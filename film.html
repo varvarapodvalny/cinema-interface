@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дьявол носит Prada 2 — Cinerix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & TOKENS
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:   #19072C;
+  --black:  #000000;
+  --cream:  #EEECE0;
+  --white:  #ffffff;
+  --cyan:   #00DFF0;
+  --cyan-lt:#33E8F5;
+  --purple: #9747FF;
+  --grey:   #9B9B9B;
+  --red:    #FF3434;
+  --font-d: 'Unbounded', sans-serif;
+  --font-b: 'Helvetica Neue', Arial, sans-serif;
+  --w:      1280px;
+  --pad:    40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+html  { scroll-behavior: smooth; }
+body  { background: var(--navy); color: var(--cream); font-family: var(--font-b);
+        font-size: 16px; line-height: 24px; min-width: 1280px; overflow-x: hidden; }
+a     { color: inherit; }
+button { font-family: inherit; }
+
+/* ============================================================
+   FOCUS & SKIP LINK
+============================================================ */
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+.skip-link {
+  position: fixed; top: -80px; left: 16px; z-index: 9999;
+  background: var(--cyan); color: var(--black);
+  font-family: var(--font-d); font-size: 13px; font-weight: 700;
+  padding: 10px 20px; border-radius: 0 0 8px 8px;
+  text-decoration: none; transition: top .2s;
+}
+.skip-link:focus { top: 0; }
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-d); font-weight: 700; font-size: 13px;
+  height: 44px; padding: 0 24px; border-radius: 100px;
+  border: none; cursor: pointer; text-decoration: none;
+  white-space: nowrap; transition: filter .2s; letter-spacing: .02em;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn-primary { background: var(--cyan); color: var(--black); }
+.btn-ghost   { background: transparent; color: var(--cream);
+               border: 1.5px solid rgba(238,236,224,.6); }
+.btn-ghost:hover { background: rgba(238,236,224,.08); filter: none; }
+
+/* ============================================================
+   EVENT BANNER
+============================================================ */
+.banner {
+  background: linear-gradient(90deg, #6b1fbf 0%, #3d0e75 45%, var(--navy) 100%);
+  overflow: hidden; transition: height .35s ease, opacity .35s ease;
+}
+.banner.hidden { height: 0 !important; opacity: 0; pointer-events: none; }
+.banner__inner {
+  max-width: var(--w); margin: 0 auto; padding: 0 var(--pad);
+  height: 44px; display: flex; align-items: center; gap: 12px;
+}
+.banner__star { color: var(--cyan); font-size: 14px; flex-shrink: 0; }
+.banner__text { font-size: 14px; color: var(--cream); flex: 1; }
+.banner__link {
+  font-family: var(--font-d); font-size: 11px; font-weight: 700;
+  letter-spacing: .06em; color: var(--cyan); text-decoration: none;
+  flex-shrink: 0; transition: opacity .2s;
+}
+.banner__link:hover { opacity: .75; }
+.banner__close {
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer; color: rgba(238,236,224,.6);
+  border-radius: 4px; transition: color .2s, background .2s; flex-shrink: 0;
+}
+.banner__close:hover { color: var(--cream); background: rgba(255,255,255,.08); }
+
+/* ============================================================
+   NAV
+============================================================ */
+.nav-wrap {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--navy);
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s, backdrop-filter .2s, background .2s;
+}
+.nav-wrap.scrolled {
+  background: rgba(25,7,44,.92);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: rgba(255,255,255,.06);
+}
+.nav {
+  max-width: var(--w); margin: 0 auto; padding: 0 var(--pad);
+  height: 70px; display: flex; align-items: center;
+}
+.nav__logo {
+  font-family: var(--font-d); font-size: 20px; font-weight: 700;
+  color: var(--cream); text-decoration: none; letter-spacing: -.02em;
+  margin-right: 52px; flex-shrink: 0;
+}
+.nav__logo em { font-style: normal; color: var(--cyan); }
+.nav__links { display: flex; align-items: center; gap: 36px; flex: 1; }
+.nav__link {
+  font-size: 15px; color: rgba(238,236,224,.8); text-decoration: none;
+  transition: color .2s; white-space: nowrap; position: relative;
+}
+.nav__link:hover { color: var(--cream); }
+.nav__link::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: var(--cyan);
+  transform: scaleX(0); transition: transform .2s; transform-origin: left;
+}
+.nav__link:hover::after { transform: scaleX(1); }
+.nav__badge {
+  position: absolute; top: -5px; right: -10px;
+  width: 7px; height: 7px; background: var(--cyan); border-radius: 50%;
+}
+.nav__right { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+
+.nav__search { position: relative; display: flex; align-items: center; }
+.nav__search-btn {
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer; color: rgba(238,236,224,.7);
+  border-radius: 6px; transition: color .2s, background .2s;
+}
+.nav__search-btn:hover { color: var(--cream); background: rgba(255,255,255,.07); }
+.nav__search-input {
+  position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+  width: 0; opacity: 0; pointer-events: none;
+  background: rgba(0,0,0,.5); border: 1.5px solid rgba(238,236,224,.3);
+  color: var(--cream); height: 40px; padding: 0 16px; border-radius: 100px;
+  font-family: var(--font-b); font-size: 14px;
+  transition: width .3s ease, opacity .3s ease;
+}
+.nav__search-input::placeholder { color: var(--grey); }
+.nav__search-input:focus { border-color: var(--cyan); outline: none; }
+.nav__search.open .nav__search-input { width: 248px; opacity: 1; pointer-events: all; }
+.nav__search.open .nav__search-btn  { opacity: 0; pointer-events: none; }
+
+.nav__lang {
+  display: flex; background: rgba(255,255,255,.07);
+  border-radius: 100px; padding: 3px; gap: 2px;
+}
+.lang-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-d); font-size: 10px; font-weight: 700;
+  letter-spacing: .06em; color: var(--grey);
+  padding: 5px 11px; border-radius: 100px;
+  transition: background .2s, color .2s;
+}
+.lang-btn.active { background: var(--cyan); color: var(--black); }
+.lang-btn:hover:not(.active) { color: var(--cream); }
+
+/* ============================================================
+   BREADCRUMB
+============================================================ */
+.breadcrumb {
+  max-width: var(--w); margin: 0 auto; padding: 20px var(--pad) 36px;
+}
+.breadcrumb__list {
+  display: flex; align-items: center; gap: 8px; list-style: none;
+  font-size: 14px; line-height: 20px; color: var(--grey);
+}
+.breadcrumb__sep { color: rgba(155,155,155,.5); font-size: 12px; }
+.breadcrumb__link { color: var(--grey); text-decoration: none; transition: color .2s; }
+.breadcrumb__link:hover { color: var(--cream); }
+.breadcrumb__current { color: var(--cream); }
+
+/* ============================================================
+   FILM HERO
+============================================================ */
+.film-hero {
+  position: relative; width: 100%; height: 660px;
+  overflow: hidden; background: var(--black);
+}
+.film-hero__bg {
+  position: absolute; inset: 0;
+  background-image: url('media.avif');
+  background-size: cover; background-position: center top;
+}
+.film-hero__overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top,  rgba(25,7,44,.98) 0%, rgba(25,7,44,.7) 28%, transparent 58%),
+    linear-gradient(to right, rgba(25,7,44,.65) 0%, rgba(25,7,44,.2) 50%, transparent 72%);
+}
+/* Outer wrapper: positions the whole bottom block */
+.film-hero__content {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+  max-width: var(--w); margin: 0 auto; padding: 0 var(--pad) 0;
+  width: 100%; display: flex; flex-direction: column;
+}
+/* Row 1: title left + trailer button right */
+.film-hero__top-row {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding-bottom: 20px;
+}
+.film-hero__left { max-width: 560px; }
+.film-hero__pills {
+  display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; align-items: center;
+}
+.film-hero__pill {
+  font-family: var(--font-d); font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .09em;
+  border: 1.5px solid rgba(238,236,224,.4); color: rgba(238,236,224,.8);
+  padding: 5px 14px; border-radius: 100px;
+}
+.film-hero__pill--age {
+  background: rgba(255,138,0,.15); border-color: rgba(255,138,0,.5); color: rgba(255,200,100,.9);
+}
+.film-hero__title {
+  font-family: var(--font-d); font-size: 64px; line-height: 72px; font-weight: 700;
+  color: var(--cream); margin-bottom: 10px; letter-spacing: -.025em;
+}
+.film-hero__director { font-size: 15px; color: var(--grey); }
+
+/* Trailer button */
+.film-hero__trailer {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(0,0,0,.50);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(238,236,224,.35); border-radius: 100px;
+  color: var(--cream); font-family: var(--font-d); font-size: 12px; font-weight: 700;
+  letter-spacing: .04em; padding: 0 22px; height: 44px; cursor: pointer;
+  text-decoration: none; transition: border-color .2s, background .2s, color .2s;
+  flex-shrink: 0; align-self: flex-end;
+}
+.film-hero__trailer:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(0,0,0,.7); }
+
+/* Row 2: description strip — semi-transparent, full width, over the image */
+/* full-bleed wrapper so the bg covers edge-to-edge */
+.film-hero__desc-strip-outer {
+  width: 100vw; position: relative; left: 50%; right: 50%;
+  margin-left: -50vw; margin-right: -50vw;
+  background: rgba(10,2,18,.62);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.film-hero__desc-strip {
+  max-width: var(--w); margin: 0 auto; padding: 22px var(--pad) 28px;
+  display: flex; align-items: stretch; gap: 0;
+}
+.film-hero__desc-text {
+  flex: 1; font-size: 15px; line-height: 25px; color: rgba(238,236,224,.88);
+  padding-right: 48px;
+}
+.film-hero__desc-sep {
+  width: 1px; background: rgba(255,255,255,.12); flex-shrink: 0; margin: 4px 0;
+}
+.film-hero__desc-meta {
+  flex-shrink: 0; display: flex; flex-direction: column; gap: 7px;
+  min-width: 260px; padding-left: 48px;
+}
+.film-hero__desc-meta-row { display: flex; gap: 8px; font-size: 13px; }
+.film-hero__desc-meta-row span { color: var(--grey); min-width: 100px; flex-shrink: 0; }
+.film-hero__desc-meta-row b   { color: rgba(238,236,224,.8); font-weight: 400; }
+
+/* Age badge — top-right of hero */
+.film-hero__age-badge {
+  position: absolute; top: 20px; right: var(--pad); z-index: 3;
+  font-family: var(--font-d); font-size: 11px; font-weight: 700; letter-spacing: .05em;
+  background: rgba(255,138,0,.25); border: 1.5px solid rgba(255,138,0,.55);
+  color: rgba(255,200,100,.95); padding: 5px 12px; border-radius: 6px;
+}
+
+/* ============================================================
+   CALENDAR STRIP (same as homepage)
+============================================================ */
+.cal-outer {
+  position: relative; background: var(--black);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.cal-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 4;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.15);
+  cursor: pointer; color: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.cal-arrow:hover { background: rgba(0,0,0,.9); border-color: var(--cyan); color: var(--cyan); }
+.cal-arrow--prev { left: 8px; }
+.cal-arrow--next { right: 8px; }
+.cal-arrow:disabled { opacity: .3; cursor: not-allowed; }
+.cal-strip { padding: 0 56px; }
+.cal-strip__inner { display: flex; }
+.cal-day {
+  flex: 1; min-width: 86px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 14px 6px 16px;
+  background: transparent; border: none; cursor: pointer; color: inherit;
+  border-bottom: 2px solid transparent;
+  border-right: 1px solid rgba(255,255,255,.05);
+  transition: background .15s, border-bottom-color .15s;
+}
+.cal-day:last-child { border-right: none; }
+.cal-day:hover:not(.on) { background: rgba(255,255,255,.04); }
+.cal-day.on { border-bottom-color: var(--cyan); background: rgba(0,223,240,.04); }
+.cal-day__label {
+  font-family: var(--font-d); font-size: 9px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .07em; color: var(--grey);
+  line-height: 1; margin-bottom: 6px;
+}
+.cal-day.on .cal-day__label  { color: var(--cyan-lt); }
+.cal-day--today .cal-day__label { color: var(--cyan); }
+.cal-day__num {
+  font-family: var(--font-d); font-size: 26px; font-weight: 700; line-height: 1;
+  color: var(--cream); margin-bottom: 5px; transition: color .15s;
+}
+.cal-day.on .cal-day__num { color: var(--cyan); }
+.cal-day__month {
+  font-family: var(--font-b); font-size: 11px; color: var(--grey);
+  text-transform: lowercase; line-height: 1;
+}
+
+/* ============================================================
+   DATE & SESSION SECTION
+============================================================ */
+.film-schedule {
+  max-width: var(--w); margin: 0 auto; padding: 52px var(--pad) 0;
+}
+.film-schedule__heading {
+  font-family: var(--font-d); font-size: 22px; font-weight: 700;
+  color: var(--cream); margin-bottom: 28px; letter-spacing: -.01em;
+}
+
+/* Hall groups */
+.session-grid { display: flex; flex-direction: column; gap: 36px; }
+.hall-group { }
+.hall-label {
+  font-family: var(--font-d); font-size: 12px; font-weight: 600;
+  color: var(--grey); text-transform: uppercase; letter-spacing: .07em;
+  margin-bottom: 14px;
+}
+.hall-label em {
+  font-style: normal; color: rgba(238,236,224,.4);
+  font-family: var(--font-b); font-weight: 400; text-transform: none;
+  letter-spacing: 0; font-size: 12px; margin-left: 6px;
+}
+.session-times { display: flex; gap: 10px; flex-wrap: wrap; }
+.time-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 88px; height: 44px; border-radius: 100px;
+  border: 1.5px solid rgba(238,236,224,.4); background: transparent;
+  font-family: var(--font-d); font-size: 15px; font-weight: 600;
+  color: var(--cream); cursor: pointer;
+  transition: border-color .18s, background .18s, color .18s;
+}
+.time-pill:hover:not(.on) { border-color: var(--cyan); }
+.time-pill.on { background: var(--cyan); border-color: var(--cyan); color: var(--black); }
+
+/* No sessions message */
+.no-sessions {
+  display: none; font-size: 16px; color: var(--grey); padding: 12px 0;
+}
+
+/* ============================================================
+   STICKY CTA BAR
+============================================================ */
+.sticky-cta {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
+  background: rgba(0,0,0,.95); backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,.09);
+  transform: translateY(100%);
+  transition: transform .3s ease;
+}
+.sticky-cta.visible { transform: translateY(0); }
+.sticky-cta__inner {
+  position: relative;
+  max-width: var(--w); margin: 0 auto; padding: 0 var(--pad);
+  height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.sticky-cta__info { font-size: 16px; color: var(--cream); }
+.sticky-cta__info strong { font-family: var(--font-d); font-weight: 700; font-size: 15px; }
+.sticky-cta__sep { color: rgba(238,236,224,.3); margin: 0 8px; }
+.sticky-cta__close {
+  position: absolute; top: 8px; right: 0;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(10,2,18,.9); backdrop-filter: blur(8px);
+  border: 1px solid rgba(238,236,224,.2); border-radius: 50%;
+  cursor: pointer; color: rgba(238,236,224,.5);
+  transition: color .2s, border-color .2s;
+}
+.sticky-cta__close:hover { color: var(--cream); border-color: rgba(238,236,224,.5); }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer { background: var(--black); margin-top: 120px; padding: 60px 0 28px; }
+.footer__top {
+  max-width: var(--w); margin: 0 auto; padding: 0 var(--pad);
+  display: grid; grid-template-columns: 220px repeat(4,1fr); gap: 40px;
+  margin-bottom: 48px;
+}
+.footer__logo {
+  font-family: var(--font-d); font-size: 18px; font-weight: 700;
+  color: var(--cream); text-decoration: none; letter-spacing: -.02em;
+  display: block; margin-bottom: 12px;
+}
+.footer__logo em { font-style: normal; color: var(--cyan); }
+.footer__tagline { font-size: 13px; line-height: 20px; color: var(--grey); }
+.footer__col-title {
+  font-family: var(--font-d); font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .09em; color: rgba(238,236,224,.5);
+  margin-bottom: 18px;
+}
+.footer__links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.footer__link  { font-size: 14px; color: var(--grey); text-decoration: none; transition: color .2s; }
+.footer__link:hover { color: var(--cream); }
+.footer__bottom {
+  max-width: var(--w); margin: 0 auto; padding: 22px var(--pad) 0;
+  border-top: 1px solid rgba(255,255,255,.06);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer__copy  { font-size: 13px; color: var(--grey); }
+.footer__legal { display: flex; gap: 24px; }
+.footer__legal a { font-size: 13px; color: var(--grey); text-decoration: none; transition: color .2s; }
+.footer__legal a:hover { color: var(--cream); }
+
+/* ============================================================
+   MODAL OVERLAY
+============================================================ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--navy); border-radius: 16px;
+  padding: 40px; position: relative;
+  transform: translateY(20px); transition: transform .3s ease;
+  max-height: 90vh; overflow-y: auto;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+
+/* Header bar: title on left, close button on right — no overlap possible */
+.modal__bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin-bottom: 28px; min-height: 32px;
+}
+.modal__close {
+  width: 32px; height: 32px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(10,2,18,.9); border: 1px solid rgba(238,236,224,.2); border-radius: 50%;
+  cursor: pointer; color: rgba(238,236,224,.5);
+  transition: color .2s, border-color .2s;
+}
+.modal__close:hover { color: var(--cream); border-color: rgba(238,236,224,.5); }
+
+.modal__header {
+  font-family: var(--font-d); font-size: 16px; font-weight: 700;
+  color: var(--cream); line-height: 24px;
+}
+.modal__header span { color: var(--grey); font-weight: 400; font-family: var(--font-b); margin: 0 6px; }
+
+/* ============================================================
+   SEAT MODAL
+============================================================ */
+.seat-modal { width: 860px; max-width: 95vw; }
+
+.screen-bar {
+  text-align: center; font-size: 12px; font-family: var(--font-d);
+  font-weight: 600; letter-spacing: .12em; color: var(--grey);
+  text-transform: uppercase; margin-bottom: 24px;
+  padding-bottom: 12px; border-bottom: 2px solid rgba(155,155,155,.2);
+  position: relative;
+}
+.screen-bar::after {
+  content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
+  width: 220px; height: 2px; background: linear-gradient(90deg, transparent, var(--grey), transparent);
+  border-radius: 1px;
+}
+
+.seat-grid {
+  display: flex; flex-direction: column; gap: 6px; align-items: center;
+  margin-bottom: 28px;
+}
+.seat-row {
+  display: flex; align-items: center; gap: 6px;
+}
+.seat-row__label {
+  font-family: var(--font-d); font-size: 10px; font-weight: 600;
+  color: var(--grey); width: 18px; text-align: center; flex-shrink: 0;
+}
+
+.seat {
+  width: 32px; height: 32px; border-radius: 4px;
+  border: 1.5px solid rgba(238,236,224,.45); background: transparent;
+  cursor: pointer; transition: border-color .15s, background .15s;
+  flex-shrink: 0; font-size: 0;
+}
+.seat:hover:not(.seat--occupied) { border-color: var(--cyan); }
+.seat.seat--selected { background: var(--cyan); border-color: var(--cyan); }
+.seat.seat--occupied {
+  background: rgba(42,42,42,.9); border-color: transparent;
+  cursor: not-allowed;
+}
+.seat.seat--premium { border-color: rgba(238,236,224,.65); }
+.seat.seat--premium.seat--selected { background: var(--cyan); border-color: var(--cyan); }
+
+/* legend */
+.seat-legend {
+  display: flex; gap: 24px; justify-content: center; margin-bottom: 28px;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--grey);
+}
+.legend-swatch {
+  width: 16px; height: 16px; border-radius: 3px; flex-shrink: 0;
+}
+.ls-avail   { border: 1.5px solid rgba(238,236,224,.45); background: transparent; }
+.ls-sel     { background: var(--cyan); border: 1.5px solid var(--cyan); }
+.ls-occ     { background: rgba(42,42,42,.9); border: 1.5px solid transparent; }
+.ls-prem    { border: 1.5px solid rgba(238,236,224,.65); background: transparent; }
+
+/* selection summary */
+.seat-summary {
+  background: rgba(0,0,0,.4); border-radius: 12px; padding: 20px 24px;
+}
+.seat-summary__row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 14px; color: var(--cream); margin-bottom: 8px;
+}
+.seat-summary__row:last-child { margin-bottom: 0; }
+.seat-summary__label { color: var(--grey); }
+.seat-summary__total {
+  font-family: var(--font-d); font-size: 18px; font-weight: 700;
+  color: var(--cream);
+}
+.seat-summary__divider {
+  border: none; border-top: 1px solid rgba(255,255,255,.08);
+  margin: 12px 0;
+}
+.seat-summary__cta {
+  margin-top: 20px; display: flex; justify-content: flex-end;
+}
+
+/* Disabled primary button */
+.btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn-primary:disabled:hover { filter: none; }
+
+/* Per-seat ticket rows */
+.seat-summary__empty {
+  font-size: 13px; color: var(--grey); text-align: center; padding: 4px 0 8px;
+}
+.seat-summary__seat-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.seat-summary__seat-row:last-child { border-bottom: none; }
+.seat-summary__seat-label {
+  font-family: var(--font-d); font-size: 12px; font-weight: 600; color: var(--cream);
+}
+.seat-summary__seat-controls { display: flex; align-items: center; gap: 10px; }
+.seat-ticket-select {
+  background: rgba(255,255,255,.05); border: 1.5px solid rgba(238,236,224,.2);
+  border-radius: 6px; color: var(--cream); font-family: var(--font-b); font-size: 12px;
+  padding: 5px 26px 5px 10px; cursor: pointer; appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%239B9B9B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 8px center;
+  transition: border-color .2s;
+}
+.seat-ticket-select:focus { border-color: var(--cyan); outline: none; }
+.seat-ticket-select option { background: #0d0015; }
+.seat-summary__seat-price {
+  font-family: var(--font-d); font-size: 13px; font-weight: 600;
+  color: var(--cream); min-width: 52px; text-align: right; flex-shrink: 0;
+}
+
+/* ============================================================
+   CHECKOUT MODAL
+============================================================ */
+.checkout-modal { width: 600px; max-width: 95vw; }
+
+/* Progress stepper */
+.checkout-steps {
+  display: flex; align-items: center; gap: 0; margin-bottom: 36px;
+}
+.checkout-step {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--grey);
+  flex-shrink: 0;
+}
+.checkout-step.active { color: var(--cream); }
+.checkout-step.done   { color: var(--grey); }
+.step-dot {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-d); font-size: 10px; font-weight: 700;
+  border: 2px solid rgba(155,155,155,.4); color: var(--grey);
+  flex-shrink: 0; transition: all .2s;
+}
+.checkout-step.active .step-dot { border-color: var(--cyan); color: var(--cyan); background: rgba(0,223,240,.1); }
+.checkout-step.done .step-dot   { border-color: var(--grey); background: rgba(155,155,155,.15); }
+.step-line {
+  flex: 1; height: 1px; background: rgba(155,155,155,.25); margin: 0 12px;
+}
+
+/* Step content */
+.checkout-step-content { display: none; }
+.checkout-step-content.active { display: block; }
+
+/* Order review (step 1) */
+.order-review__title {
+  font-family: var(--font-d); font-size: 20px; font-weight: 700;
+  color: var(--cream); margin-bottom: 4px;
+}
+.order-review__sub { font-size: 14px; color: var(--grey); margin-bottom: 28px; }
+
+.order-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 15px; color: var(--cream); padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.order-row__label { color: var(--grey); font-size: 14px; }
+.order-row:last-of-type { border-bottom: none; }
+
+.ticket-type-select {
+  background: rgba(0,0,0,.5); border: 1.5px solid rgba(238,236,224,.25);
+  border-radius: 8px; color: var(--cream); font-family: var(--font-b); font-size: 14px;
+  padding: 8px 12px; cursor: pointer; appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%239B9B9B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center;
+  padding-right: 30px; transition: border-color .2s;
+}
+.ticket-type-select:focus { border-color: var(--cyan); outline: none; }
+.ticket-type-select option { background: #0d0015; }
+
+.order-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 0 0; font-family: var(--font-d); font-size: 18px; font-weight: 700;
+}
+
+.checkout-actions {
+  display: flex; justify-content: space-between; align-items: center; margin-top: 28px; gap: 12px;
+}
+.btn-back {
+  background: none; border: 1.5px solid rgba(238,236,224,.3); color: rgba(238,236,224,.7);
+  font-family: var(--font-d); font-size: 12px; font-weight: 700; letter-spacing: .03em;
+  height: 44px; padding: 0 20px; border-radius: 100px; cursor: pointer;
+  transition: border-color .2s, color .2s;
+}
+.btn-back:hover { border-color: rgba(238,236,224,.6); color: var(--cream); }
+.btn-back .arr { font-size: 1.5em; line-height: 1; vertical-align: middle; }
+
+/* Payment step */
+.pay-methods { display: flex; gap: 12px; margin-bottom: 28px; }
+.pay-card {
+  flex: 1; border: 1.5px solid rgba(238,236,224,.2); border-radius: 12px;
+  padding: 16px; cursor: pointer; transition: border-color .2s, background .2s;
+  background: none; color: var(--cream); text-align: left;
+  font-family: var(--font-b);
+}
+.pay-card:hover { background: rgba(255,255,255,.04); border-color: rgba(238,236,224,.4); }
+.pay-card.selected { border-color: var(--cyan); background: rgba(0,223,240,.06); }
+.pay-card__icon { font-size: 22px; margin-bottom: 8px; display: block; }
+.pay-card__name { font-family: var(--font-d); font-size: 12px; font-weight: 700; color: var(--cream); }
+.pay-card__sub  { font-size: 12px; color: var(--grey); margin-top: 2px; }
+
+.contact-form { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-label { font-size: 13px; color: var(--grey); }
+.form-input {
+  background: var(--black); border: 1.5px solid rgba(155,155,155,.4);
+  border-radius: 8px; color: var(--cream); font-family: var(--font-b); font-size: 15px;
+  height: 48px; padding: 0 16px; transition: border-color .2s;
+}
+.form-input::placeholder { color: rgba(155,155,155,.5); }
+.form-input:focus { border-color: var(--cyan); outline: none; }
+.btn-pay {
+  width: 100%; background: var(--cyan); color: var(--black);
+  font-family: var(--font-d); font-size: 16px; font-weight: 700;
+  height: 56px; border-radius: 100px; border: none; cursor: pointer;
+  transition: filter .2s; letter-spacing: .02em;
+}
+.btn-pay:hover { filter: brightness(1.08); }
+
+/* Confirmation step */
+.confirm-wrap { text-align: center; padding: 8px 0; }
+.confirm-icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(0,223,240,.12); border: 2px solid rgba(0,223,240,.4);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 32px; color: var(--cyan);
+}
+.confirm-title {
+  font-family: var(--font-d); font-size: 26px; font-weight: 700;
+  color: var(--cream); margin-bottom: 8px;
+}
+.confirm-sub { font-size: 16px; color: var(--grey); margin-bottom: 4px; }
+.confirm-order-num { font-family: var(--font-d); font-size: 14px; color: var(--cyan); margin-bottom: 28px; }
+
+.qr-placeholder {
+  width: 120px; height: 120px; background: rgba(255,255,255,.05);
+  border: 1.5px solid rgba(238,236,224,.2); border-radius: 8px;
+  margin: 0 auto 28px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--grey); font-size: 11px; font-family: var(--font-d); font-weight: 600;
+  letter-spacing: .06em;
+}
+
+.confirm-details {
+  font-size: 14px; color: var(--grey); line-height: 22px; margin-bottom: 24px;
+}
+.confirm-details strong { color: var(--cream); font-weight: 400; }
+
+.bonus-card {
+  border: 1px solid rgba(151,71,255,.4); border-radius: 8px; padding: 16px 20px;
+  text-align: left; margin-bottom: 28px;
+  background: rgba(151,71,255,.05);
+}
+.bonus-card__title {
+  font-family: var(--font-d); font-size: 11px; font-weight: 700;
+  color: var(--purple); letter-spacing: .07em; text-transform: uppercase; margin-bottom: 6px;
+}
+.bonus-card__text { font-size: 14px; color: var(--grey); line-height: 20px; }
+.bonus-card__text strong { color: var(--cream); }
+
+.confirm-actions { display: flex; gap: 12px; justify-content: center; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Перейти к содержимому</a>
+
+<!-- BANNER -->
+<div class="banner" id="banner" role="region" aria-label="Анонс события">
+  <div class="banner__inner">
+    <span class="banner__star" aria-hidden="true">★</span>
+    <span class="banner__text" data-i18n="b-text">Кино в парке — 12 июля, Парк Горького</span>
+    <a href="special.html" class="banner__link" data-i18n="b-link">Подробнее&nbsp;→</a>
+    <button class="banner__close" id="bannerClose" aria-label="Закрыть объявление">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav-wrap" id="navWrap">
+  <nav class="nav" aria-label="Основная навигация">
+    <a href="index.html" class="nav__logo" aria-label="Cinerix — на главную">Cinerix<em>.</em></a>
+    <div class="nav__links">
+      <a href="films.html"   class="nav__link" data-i18n="n-films">Фильмы</a>
+      <a href="special.html" class="nav__link" style="position:relative">
+        <span data-i18n="n-special">Спецпоказы</span><span class="nav__badge" aria-label="Есть новые события"></span>
+      </a>
+      <a href="soon.html"    class="nav__link" data-i18n="n-soon">Скоро в кино</a>
+      <a href="about.html"   class="nav__link" data-i18n="n-about">О кинотеатре</a>
+    </div>
+    <div class="nav__right">
+      <div class="nav__search" id="navSearch">
+        <button class="nav__search-btn" id="searchBtn"
+                aria-label="Поиск фильмов" aria-expanded="false" aria-controls="searchInput">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <circle cx="7.5" cy="7.5" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M11.5 11.5L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <input id="searchInput" type="search" class="nav__search-input"
+               placeholder="Название фильма…" aria-label="Введите название фильма">
+      </div>
+      <div class="nav__lang" role="group" aria-label="Выбрать язык">
+        <button class="lang-btn active" id="lRu" aria-pressed="true">RU</button>
+        <button class="lang-btn"        id="lEn" aria-pressed="false">EN</button>
+      </div>
+      <a href="#sessions" class="btn btn-primary" data-i18n="n-cta">Купить билет</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Навигация по сайту">
+    <ol class="breadcrumb__list">
+      <li><a href="index.html" class="breadcrumb__link" data-i18n="bc-home">Главная</a></li>
+      <li class="breadcrumb__sep" aria-hidden="true">›</li>
+      <li class="breadcrumb__current" aria-current="page">Дьявол носит Prada 2</li>
+    </ol>
+  </nav>
+
+  <!-- FILM HERO -->
+  <section class="film-hero" aria-label="Информация о фильме">
+    <div class="film-hero__bg"></div>
+    <div class="film-hero__overlay"></div>
+    <span class="film-hero__age-badge" aria-label="Возрастное ограничение 16+">16+</span>
+
+    <div class="film-hero__content">
+      <!-- Row 1: title left + trailer button right -->
+      <div class="film-hero__top-row">
+        <div class="film-hero__left">
+          <div class="film-hero__pills">
+            <span class="film-hero__pill">2026</span>
+            <span class="film-hero__pill" data-i18n="fp-genre">Комедия · Драма</span>
+          </div>
+          <h1 class="film-hero__title">Дьявол носит<br>Prada 2</h1>
+          <p class="film-hero__director" data-i18n="fp-dir">Реж. Алин Брош МакКенна</p>
+        </div>
+
+        <a href="#" class="film-hero__trailer" aria-label="Смотреть трейлер к фильму">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M6.5 5.5L11 8L6.5 10.5V5.5Z" fill="currentColor"/>
+          </svg>
+          <span data-i18n="fp-trailer">Трейлер</span>
+        </a>
+      </div>
+
+      <!-- Row 2: description strip over image, full-bleed bg -->
+      <div class="film-hero__desc-strip-outer">
+        <div class="film-hero__desc-strip">
+          <p class="film-hero__desc-text" data-i18n="fp-desc">Андреа Сакс возвращается в мир моды — теперь уже по другую сторону баррикад. Спустя десять лет она — главный редактор собственного медиапроекта, бросающего вызов Runway. Миранда Пристли по-прежнему держит индустрию железной рукой. Новое противостояние. Старая злость. И неожиданный союз, который никто не ожидал.</p>
+          <div class="film-hero__desc-sep" aria-hidden="true"></div>
+          <div class="film-hero__desc-meta">
+            <div class="film-hero__desc-meta-row"><span data-i18n="fp-cast-lbl">В ролях</span><b>Мерил Стрип, Энн Хэтэуэй, Эмили Блант</b></div>
+            <div class="film-hero__desc-meta-row"><span data-i18n="fp-lang-lbl">Язык</span><b data-i18n="fp-lang-val">English / Рус. субтитры</b></div>
+            <div class="film-hero__desc-meta-row"><span data-i18n="fp-country-lbl">Страна</span><b data-i18n="fp-country-val">США</b></div>
+            <div class="film-hero__desc-meta-row"><span data-i18n="fp-dur-lbl">Длительность</span><b data-i18n="fp-dur-val">2 ч 15 мин</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR STRIP (identical to homepage) -->
+  <section class="cal-outer" aria-label="Расписание по датам">
+    <button class="cal-arrow cal-arrow--prev" id="calPrev" aria-label="Предыдущие даты">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="cal-strip">
+      <div class="cal-strip__inner" id="calStrip" role="group" aria-label="Выберите дату"></div>
+    </div>
+    <button class="cal-arrow cal-arrow--next" id="calNext" aria-label="Следующие даты">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </section>
+
+  <!-- SESSIONS -->
+  <section class="film-schedule" id="sessions" aria-label="Расписание сеансов">
+    <h2 class="film-schedule__heading" data-i18n="fp-sessions">Сеансы</h2>
+
+    <!-- Date pills (hidden, driven by calendar strip above) -->
+    <div style="display:none" id="dateRow"></div>
+
+    <!-- Session grid -->
+    <div class="session-grid" id="sessionGrid" aria-label="Выберите сеанс">
+
+      <div class="hall-group">
+        <div class="hall-label"><span data-i18n="fp-hall1">Зал 1</span><em data-i18n="fp-hall1-em">— IMAX</em></div>
+        <div class="session-times" role="radiogroup" aria-label="Сеансы в Зал 1 IMAX" id="hall1Times">
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 1 — IMAX" data-time="11:00" aria-label="11:00, Зал 1 IMAX">11:00</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 1 — IMAX" data-time="14:30" aria-label="14:30, Зал 1 IMAX">14:30</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 1 — IMAX" data-time="17:45" aria-label="17:45, Зал 1 IMAX">17:45</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 1 — IMAX" data-time="21:00" aria-label="21:00, Зал 1 IMAX">21:00</button>
+        </div>
+      </div>
+
+      <div class="hall-group">
+        <div class="hall-label"><span data-i18n="fp-hall2">Зал 2</span><em data-i18n="fp-hall2-em">— Стандарт</em></div>
+        <div class="session-times" role="radiogroup" aria-label="Сеансы в Зал 2 Стандарт" id="hall2Times">
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 2 — Стандарт" data-time="10:00" aria-label="10:00, Зал 2 Стандарт">10:00</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 2 — Стандарт" data-time="13:15" aria-label="13:15, Зал 2 Стандарт">13:15</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 2 — Стандарт" data-time="16:30" aria-label="16:30, Зал 2 Стандарт">16:30</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 2 — Стандарт" data-time="19:45" aria-label="19:45, Зал 2 Стандарт">19:45</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- STICKY CTA BAR -->
+<div class="sticky-cta" id="stickyCta" role="region" aria-label="Купить билет на выбранный сеанс" aria-live="polite">
+  <div class="sticky-cta__inner">
+    <div class="sticky-cta__info">
+      <strong>Дьявол носит Prada 2</strong>
+      <span class="sticky-cta__sep">·</span>
+      <span id="ctaDate">—</span>
+      <span class="sticky-cta__sep">·</span>
+      <span id="ctaSession">—</span>
+    </div>
+    <button class="btn btn-primary" id="openSeatModal" style="height:48px;font-size:14px;padding:0 32px;" data-i18n="fp-buy">
+      Купить билет
+    </button>
+    <button class="sticky-cta__close" id="closeCta" aria-label="Закрыть и сбросить выбор сеанса">
+      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer" aria-label="Подвал сайта">
+  <div class="footer__top">
+    <div>
+      <a href="index.html" class="footer__logo">Cinerix<em>.</em></a>
+      <p class="footer__tagline">Кино, которое стоит увидеть.</p>
+    </div>
+    <div>
+      <div class="footer__col-title" data-i18n="f-films">Фильмы</div>
+      <ul class="footer__links">
+        <li><a href="films.html"   class="footer__link" data-i18n="f-now">Сейчас в кино</a></li>
+        <li><a href="soon.html"    class="footer__link" data-i18n="f-soon">Скоро</a></li>
+        <li><a href="special.html" class="footer__link" data-i18n="f-spec">Спецпоказы</a></li>
+        <li><a href="archive.html" class="footer__link" data-i18n="f-arch">Архив</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title" data-i18n="f-info">Информация</div>
+      <ul class="footer__links">
+        <li><a href="about.html" class="footer__link" data-i18n="f-about">О кинотеатре</a></li>
+        <li><a href="#"          class="footer__link" data-i18n="f-ads">Реклама</a></li>
+        <li><a href="#"          class="footer__link" data-i18n="f-rent">Аренда залов</a></li>
+        <li><a href="#"          class="footer__link" data-i18n="f-press">Пресса</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title" data-i18n="f-cont">Контакты</div>
+      <ul class="footer__links">
+        <li><a href="#"                      class="footer__link">ул. Новый Арбат, 15</a></li>
+        <li><a href="tel:+74950000000"       class="footer__link">+7 (495) 000-00-00</a></li>
+        <li><a href="mailto:info@cinerix.ru" class="footer__link">info@cinerix.ru</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title" data-i18n="f-soc">Соцсети</div>
+      <ul class="footer__links">
+        <li><a href="#" class="footer__link">ВКонтакте</a></li>
+        <li><a href="#" class="footer__link">Telegram</a></li>
+        <li><a href="#" class="footer__link">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p class="footer__copy">© 2026 Cinerix</p>
+    <div class="footer__legal">
+      <a href="#">Политика конфиденциальности</a>
+      <a href="#">Пользовательское соглашение</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SEAT SELECTION MODAL
+============================================================ -->
+<div class="modal-overlay" id="seatOverlay" role="dialog" aria-modal="true"
+     aria-labelledby="seatModalTitle">
+  <div class="modal seat-modal" id="seatModalPanel">
+    <div class="modal__bar">
+      <div class="modal__header" id="seatModalTitle">
+        Дьявол носит Prada 2<span>·</span><span id="seatModalDate">—</span><span>·</span><span id="seatModalSession">—</span>
+      </div>
+      <button class="modal__close" id="closeSeatModal" aria-label="Закрыть выбор мест">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="screen-bar" aria-hidden="true" data-i18n="sm-screen">— ЭКРАН —</div>
+
+    <div class="seat-grid" role="grid" aria-label="Схема зала" id="seatGrid"></div>
+
+    <div class="seat-legend" aria-label="Легенда мест">
+      <div class="legend-item"><div class="legend-swatch ls-avail" aria-hidden="true"></div><span data-i18n="sm-avail">Свободно</span></div>
+      <div class="legend-item"><div class="legend-swatch ls-sel"   aria-hidden="true"></div><span data-i18n="sm-sel">Выбрано</span></div>
+      <div class="legend-item"><div class="legend-swatch ls-occ"   aria-hidden="true"></div><span data-i18n="sm-occ">Занято</span></div>
+    </div>
+
+    <div class="seat-summary" id="seatSummary">
+      <div id="seatSummaryBody"></div>
+      <hr class="seat-summary__divider">
+      <div class="seat-summary__row">
+        <span class="seat-summary__label" data-i18n="sm-total">Итого</span>
+        <span class="seat-summary__total" id="summaryTotal">—</span>
+      </div>
+      <div class="seat-summary__cta">
+        <button class="btn btn-primary" id="openCheckout"
+                style="height:48px;font-size:14px;padding:0 36px;" disabled>
+          <span data-i18n="sm-cont">Продолжить</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHECKOUT MODAL
+============================================================ -->
+<div class="modal-overlay" id="checkoutOverlay" role="dialog" aria-modal="true"
+     aria-labelledby="checkoutTitle">
+  <div class="modal checkout-modal" id="checkoutPanel">
+    <div class="modal__bar">
+      <button class="modal__close" id="closeCheckout" aria-label="Закрыть оформление заказа" style="margin-left:auto">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Steps indicator -->
+    <div class="checkout-steps" role="list" aria-label="Шаги оформления">
+      <div class="checkout-step active" role="listitem" id="step-ind-1" aria-current="step">
+        <div class="step-dot">1</div>
+        <span data-i18n="co-step1">Заказ</span>
+      </div>
+      <div class="step-line" aria-hidden="true"></div>
+      <div class="checkout-step" role="listitem" id="step-ind-2">
+        <div class="step-dot">2</div>
+        <span data-i18n="co-step2">Оплата</span>
+      </div>
+      <div class="step-line" aria-hidden="true"></div>
+      <div class="checkout-step" role="listitem" id="step-ind-3">
+        <div class="step-dot">3</div>
+        <span data-i18n="co-step3">Готово</span>
+      </div>
+    </div>
+
+    <!-- STEP 1: ORDER REVIEW -->
+    <div class="checkout-step-content active" id="step1" aria-labelledby="checkoutTitle">
+      <div class="order-review__title" id="checkoutTitle" data-i18n="co-title">Ваш заказ</div>
+      <div class="order-review__sub" id="checkoutSub">—</div>
+
+      <div class="order-row">
+        <span class="order-row__label" data-i18n="co-seats">Места</span>
+        <span id="checkoutSeats">—</span>
+      </div>
+      <div id="checkoutPriceRows"></div>
+
+      <div class="order-total">
+        <span style="color:var(--grey);font-family:var(--font-b);font-size:15px;font-weight:400" data-i18n="co-total">Итого</span>
+        <span id="checkoutTotal">—</span>
+      </div>
+
+      <div class="checkout-actions">
+        <button class="btn-back" id="backToSeats"><span class="arr">←</span> <span data-i18n="co-back">Изменить места</span></button>
+        <button class="btn btn-primary" id="toStep2" style="height:48px;padding:0 36px;font-size:14px;" data-i18n="co-next">Далее
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: PAYMENT -->
+    <div class="checkout-step-content" id="step2">
+      <div class="order-review__title" data-i18n="co-pay-title">Оплата</div>
+      <div class="order-review__sub" style="margin-bottom:20px" data-i18n="co-pay-sub">Выберите способ оплаты и введите контактные данные</div>
+
+      <div class="pay-methods" role="radiogroup" aria-label="Способ оплаты">
+        <button class="pay-card selected" role="radio" aria-checked="true" data-pay="sber">
+          <span class="pay-card__icon">🟢</span>
+          <div class="pay-card__name">SberPay</div>
+          <div class="pay-card__sub" data-i18n="co-sber-sub">Быстрая оплата</div>
+        </button>
+        <button class="pay-card" role="radio" aria-checked="false" data-pay="sbp">
+          <span class="pay-card__icon">🏦</span>
+          <div class="pay-card__name" data-i18n="co-sbp-name">СБП</div>
+          <div class="pay-card__sub" data-i18n="co-sbp-sub">Быстрые переводы</div>
+        </button>
+        <button class="pay-card" role="radio" aria-checked="false" data-pay="card">
+          <span class="pay-card__icon">💳</span>
+          <div class="pay-card__name" data-i18n="co-card-name">Банковская карта</div>
+          <div class="pay-card__sub" data-i18n="co-card-sub">Visa / Mastercard / МИР</div>
+        </button>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-field">
+          <label class="form-label" for="fname" data-i18n="co-name-lbl">Имя</label>
+          <input class="form-input" type="text" id="fname" placeholder="Ваше имя" autocomplete="given-name">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="femail" data-i18n="co-email-lbl">Email</label>
+          <input class="form-input" type="email" id="femail" placeholder="email@example.com" autocomplete="email">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="fphone" data-i18n="co-phone-lbl">Телефон</label>
+          <input class="form-input" type="tel" id="fphone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+        </div>
+      </form>
+
+      <button class="btn-pay" id="toPay" type="button"><span data-i18n="co-pay-btn">Оплатить</span> <span id="payAmount">—</span></button>
+
+      <div style="margin-top:14px;text-align:center">
+        <button class="btn-back" id="backToStep1"><span class="arr">←</span> <span data-i18n="co-back2">Назад</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 3: CONFIRMATION -->
+    <div class="checkout-step-content" id="step3">
+      <div class="confirm-wrap">
+        <div class="confirm-icon" aria-hidden="true">✓</div>
+        <div class="confirm-title" data-i18n="co-conf-title">Всё готово!</div>
+        <div class="confirm-sub" data-i18n="co-conf-sub">Ваш заказ подтверждён</div>
+        <div class="confirm-order-num">№ 241-7834-C</div>
+
+        <div class="qr-placeholder" role="img" aria-label="QR-код билета" data-i18n="co-qr">QR-КОД</div>
+
+        <div class="confirm-details">
+          <strong id="confirmFilm">Дьявол носит Prada 2</strong><br>
+          <span id="confirmInfo">—</span><br>
+          <span data-i18n="co-seats-lbl">Места</span>: <strong id="confirmSeats">—</strong>
+        </div>
+
+        <div class="bonus-card" aria-label="Информация о бонусных баллах">
+          <div class="bonus-card__title" data-i18n="co-bonus-title">🎬 Бонус</div>
+          <div class="bonus-card__text">
+            За этот заказ вы получили <strong>+9 баллов</strong>.<br>
+            Ваш баланс: <strong>48 баллов</strong>. Используйте при следующей покупке.
+          </div>
+        </div>
+
+        <div class="confirm-actions">
+          <button class="btn btn-ghost" id="downloadTicket" style="height:48px;" data-i18n="co-dl">Скачать билет</button>
+          <button class="btn btn-primary" id="closeAll" style="height:48px;" data-i18n="co-home">Вернуться на главную</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ============================================================
+// SHARED STATE
+// ============================================================
+let selectedDate    = null;   // { label, shortLabel }
+let selectedSession = null;   // { time, hall }
+let selectedSeats   = [];     // ['A2', 'B3', ...]
+let seatTicketTypes = {};     // { 'A2': 'adult', ... }
+
+const PREMIUM_ROWS = [];
+
+const TICKET_TYPES = [
+  { value: 'adult',   labelKey: 'tt-adult',   priceFn: isPrem => isPrem ? 600 : 480 },
+  { value: 'child',   labelKey: 'tt-child',   priceFn: isPrem => isPrem ? 350 : 280 },
+  { value: 'student', labelKey: 'tt-student', priceFn: isPrem => isPrem ? 400 : 320 },
+  { value: 'senior',  labelKey: 'tt-senior',  priceFn: isPrem => isPrem ? 430 : 350 },
+];
+
+function getSeatPrice(key) {
+  const isPrem = PREMIUM_ROWS.includes(key[0]);
+  const tt = TICKET_TYPES.find(t => t.value === (seatTicketTypes[key] || 'adult'));
+  return tt.priceFn(isPrem);
+}
+
+// Occupied seats per spec
+const OCCUPIED = new Set(['A1','A13','B4','B5','B6','C7','C8','D2','D3','E1','E13','F6','F7','G10','H2','H3','H4']);
+
+// ============================================================
+// EVENT BANNER
+// ============================================================
+const banner = document.getElementById('banner');
+if (localStorage.getItem('cx-banner') === '1') banner.style.display = 'none';
+document.getElementById('bannerClose').addEventListener('click', () => {
+  banner.style.height = banner.offsetHeight + 'px';
+  requestAnimationFrame(() => {
+    banner.style.transition = 'height .35s ease, opacity .35s ease';
+    banner.style.height = '0'; banner.style.opacity = '0';
+  });
+  banner.addEventListener('transitionend', () => banner.style.display = 'none', { once: true });
+  localStorage.setItem('cx-banner','1');
+});
+
+// ============================================================
+// STICKY NAV
+// ============================================================
+const navWrap = document.getElementById('navWrap');
+window.addEventListener('scroll', () => {
+  navWrap.classList.toggle('scrolled', scrollY > 80);
+}, { passive: true });
+
+// ============================================================
+// NAV SEARCH
+// ============================================================
+const navSearch   = document.getElementById('navSearch');
+const searchBtn   = document.getElementById('searchBtn');
+const searchInput = document.getElementById('searchInput');
+
+searchBtn.addEventListener('click', () => {
+  navSearch.classList.add('open');
+  searchBtn.setAttribute('aria-expanded','true');
+  setTimeout(() => searchInput.focus(), 40);
+});
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    navSearch.classList.remove('open');
+    searchBtn.setAttribute('aria-expanded','false');
+    searchBtn.focus();
+  }
+});
+document.addEventListener('click', e => {
+  if (!navSearch.contains(e.target)) {
+    navSearch.classList.remove('open');
+    searchBtn.setAttribute('aria-expanded','false');
+  }
+});
+
+// ============================================================
+// TRANSLATIONS & LANGUAGE TOGGLE
+// ============================================================
+const T = {
+  ru: {
+    'skip':'Перейти к содержимому',
+    'b-text':'Кино в парке — 12 июля, Парк Горького','b-link':'Подробнее →',
+    'n-films':'Фильмы','n-special':'Спецпоказы','n-soon':'Скоро в кино',
+    'n-about':'О кинотеатре','n-cta':'Купить билет','fi-nav':'Название фильма…',
+    'fd-today':'Сегодня','fd-tmrw':'Завтра',
+    'bc-home':'Главная',
+    'fp-genre':'Комедия · Драма','fp-dir':'Реж. Алин Брош МакКенна','fp-trailer':'Трейлер',
+    'fp-desc':'Андреа Сакс возвращается в мир моды — теперь уже по другую сторону баррикад. Спустя десять лет она — главный редактор собственного медиапроекта, бросающего вызов Runway. Миранда Пристли по-прежнему держит индустрию железной рукой. Новое противостояние. Старая злость. И неожиданный союз, который никто не ожидал.',
+    'fp-cast-lbl':'В ролях','fp-lang-lbl':'Язык','fp-country-lbl':'Страна','fp-dur-lbl':'Длительность',
+    'fp-lang-val':'English / Рус. субтитры','fp-country-val':'США','fp-dur-val':'2 ч 15 мин',
+    'fp-sessions':'Сеансы',
+    'fp-hall1':'Зал 1','fp-hall1-em':'— IMAX','fp-hall2':'Зал 2','fp-hall2-em':'— Стандарт',
+    'fp-buy':'Купить билет',
+    'sm-screen':'— ЭКРАН —',
+    'sm-avail':'Свободно','sm-sel':'Выбрано','sm-occ':'Занято',
+    'sm-empty':'Выберите места на схеме выше',
+    'sm-seat':'Место','sm-total':'Итого','sm-cont':'Продолжить',
+    'ss-row':'Ряд','ss-free':'свободно','ss-sel':'выбрано','ss-occ':'занято',
+    'co-step1':'Заказ','co-step2':'Оплата','co-step3':'Готово',
+    'co-title':'Ваш заказ','co-seats':'Места','co-total':'Итого',
+    'co-back':'Изменить места','co-next':'Далее',
+    'co-pay-title':'Оплата',
+    'co-pay-sub':'Выберите способ оплаты и введите контактные данные',
+    'co-sber-sub':'Быстрая оплата','co-sbp-name':'СБП','co-sbp-sub':'Быстрые переводы',
+    'co-card-name':'Банковская карта','co-card-sub':'Visa / Mastercard / МИР',
+    'co-name-lbl':'Имя','co-email-lbl':'Email','co-phone-lbl':'Телефон',
+    'co-name-ph':'Ваше имя','co-email-ph':'email@example.com','co-phone-ph':'+7 (___) ___-__-__',
+    'co-pay-btn':'Оплатить','co-back2':'Назад',
+    'co-conf-title':'Всё готово!','co-conf-sub':'Ваш заказ подтверждён','co-qr':'QR-КОД',
+    'co-bonus-title':'🎬 Бонус','co-dl':'Скачать билет','co-home':'Вернуться на главную',
+    'co-seats-lbl':'Места',
+    'tt-adult':'Взрослый','tt-child':'Детский','tt-student':'Студенческий','tt-senior':'Льготный',
+    'f-films':'Фильмы','f-now':'Сейчас в кино','f-soon':'Скоро',
+    'f-spec':'Спецпоказы','f-arch':'Архив','f-info':'Информация',
+    'f-about':'О кинотеатре','f-ads':'Реклама','f-rent':'Аренда залов',
+    'f-press':'Пресса','f-cont':'Контакты','f-soc':'Соцсети',
+    'f-priv':'Политика конфиденциальности','f-terms':'Пользовательское соглашение'
+  },
+  en: {
+    'skip':'Skip to content',
+    'b-text':'Cinema in the Park — July 12, Gorky Park','b-link':'Learn more →',
+    'n-films':'Films','n-special':'Special Screenings','n-soon':'Coming Soon',
+    'n-about':'About','n-cta':'Buy Ticket','fi-nav':'Film title…',
+    'fd-today':'Today','fd-tmrw':'Tomorrow',
+    'bc-home':'Home',
+    'fp-genre':'Comedy · Drama','fp-dir':'Dir. Aline Brosh McKenna','fp-trailer':'Trailer',
+    'fp-desc':'Andrea Sachs returns to the fashion world — now on the other side. Ten years later, she is editor-in-chief of her own media project challenging Runway. Miranda Priestly still rules the industry with an iron fist. A new confrontation. The same old fury. And an unexpected alliance no one saw coming.',
+    'fp-cast-lbl':'Cast','fp-lang-lbl':'Language','fp-country-lbl':'Country','fp-dur-lbl':'Duration',
+    'fp-lang-val':'English / Eng. subtitles','fp-country-val':'USA','fp-dur-val':'2 h 15 min',
+    'fp-sessions':'Sessions',
+    'fp-hall1':'Hall 1','fp-hall1-em':'— IMAX','fp-hall2':'Hall 2','fp-hall2-em':'— Standard',
+    'fp-buy':'Buy Ticket',
+    'sm-screen':'— SCREEN —',
+    'sm-avail':'Available','sm-sel':'Selected','sm-occ':'Occupied',
+    'sm-empty':'Select seats on the map above',
+    'sm-seat':'Seat','sm-total':'Total','sm-cont':'Continue',
+    'ss-row':'Row','ss-free':'available','ss-sel':'selected','ss-occ':'occupied',
+    'co-step1':'Order','co-step2':'Payment','co-step3':'Done',
+    'co-title':'Your Order','co-seats':'Seats','co-total':'Total',
+    'co-back':'Change seats','co-next':'Continue',
+    'co-pay-title':'Payment',
+    'co-pay-sub':'Select a payment method and enter your contact details',
+    'co-sber-sub':'Fast payment','co-sbp-name':'SBP','co-sbp-sub':'Instant transfers',
+    'co-card-name':'Bank card','co-card-sub':'Visa / Mastercard / MIR',
+    'co-name-lbl':'Name','co-email-lbl':'Email','co-phone-lbl':'Phone',
+    'co-name-ph':'Your name','co-email-ph':'email@example.com','co-phone-ph':'+7 (___) ___-__-__',
+    'co-pay-btn':'Pay','co-back2':'Back',
+    'co-conf-title':'You\'re all set!','co-conf-sub':'Your order is confirmed','co-qr':'QR CODE',
+    'co-bonus-title':'🎬 Bonus','co-dl':'Download Ticket','co-home':'Back to Home',
+    'co-seats-lbl':'Seats',
+    'tt-adult':'Adult','tt-child':'Child','tt-student':'Student','tt-senior':'Senior',
+    'f-films':'Films','f-now':'Now Showing','f-soon':'Coming Soon',
+    'f-spec':'Special Screenings','f-arch':'Archive','f-info':'Information',
+    'f-about':'About','f-ads':'Advertising','f-rent':'Room Rental',
+    'f-press':'Press','f-cont':'Contacts','f-soc':'Social',
+    'f-priv':'Privacy Policy','f-terms':'Terms of Use'
+  }
+};
+let currentLang = 'ru';
+
+function applyLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = T[lang][el.dataset.i18n];
+    if (v !== undefined) el.textContent = v;
+  });
+  document.getElementById('searchInput').placeholder = T[lang]['fi-nav'];
+  document.getElementById('fname').placeholder        = T[lang]['co-name-ph'];
+  document.getElementById('femail').placeholder       = T[lang]['co-email-ph'];
+  document.getElementById('fphone').placeholder       = T[lang]['co-phone-ph'];
+  if (window.calendarRender) window.calendarRender();
+  if (document.getElementById('seatOverlay').classList.contains('open')) updateSeatSummary();
+  document.getElementById('lRu').classList.toggle('active', lang === 'ru');
+  document.getElementById('lEn').classList.toggle('active', lang === 'en');
+  document.getElementById('lRu').setAttribute('aria-pressed', lang === 'ru');
+  document.getElementById('lEn').setAttribute('aria-pressed', lang === 'en');
+}
+document.getElementById('lRu').addEventListener('click', () => applyLang('ru'));
+document.getElementById('lEn').addEventListener('click', () => applyLang('en'));
+
+// ============================================================
+// CALENDAR STRIP — 7-day sliding window (mirrors homepage)
+// ============================================================
+(function initCalendar() {
+  const strip   = document.getElementById('calStrip');
+  const prevBtn = document.getElementById('calPrev');
+  const nextBtn = document.getElementById('calNext');
+  const today   = new Date();
+
+  const TOTAL  = 14;
+  const WINDOW = 7;
+  let startIdx    = 0;
+  let selectedIdx = 0;
+
+  const dates = Array.from({ length: TOTAL }, (_, i) =>
+    new Date(today.getFullYear(), today.getMonth(), today.getDate() + i)
+  );
+
+  function render() {
+    const locale = currentLang === 'ru' ? 'ru-RU' : 'en-US';
+    strip.innerHTML = '';
+    const end = Math.min(startIdx + WINDOW, TOTAL);
+    for (let i = startIdx; i < end; i++) {
+      const d   = dates[i];
+      const btn = document.createElement('button');
+      btn.className = 'cal-day' +
+        (i === selectedIdx ? ' on' : '') +
+        (i === 0 ? ' cal-day--today' : '');
+      btn.setAttribute('aria-pressed', i === selectedIdx ? 'true' : 'false');
+      btn.setAttribute('aria-label', d.toLocaleDateString(locale, { day:'numeric', month:'long', weekday:'long' }));
+
+      const rawLabel = i === 0 ? T[currentLang]['fd-today'] :
+                       i === 1 ? T[currentLang]['fd-tmrw']  :
+                       d.toLocaleDateString(locale, { weekday: 'short' }).replace('.', '');
+      const label = rawLabel.charAt(0).toUpperCase() + rawLabel.slice(1);
+      const month = d.toLocaleDateString(locale, { month: 'short' }).replace('.', '');
+      btn.innerHTML =
+        `<span class="cal-day__label">${label}</span>` +
+        `<span class="cal-day__num">${d.getDate()}</span>` +
+        `<span class="cal-day__month">${month}</span>`;
+
+      btn.addEventListener('click', () => {
+        selectedIdx = i;
+        selectedDate = {
+          label:      d.toLocaleDateString(locale, { day:'numeric', month:'long' }),
+          shortLabel: d.toLocaleDateString(locale, { day:'numeric', month:'long' })
+        };
+        selectedSession = null;
+        document.querySelectorAll('.time-pill').forEach(p => {
+          p.classList.remove('on');
+          p.setAttribute('aria-checked','false');
+        });
+        updateStickyCta();
+        render();
+      });
+
+      strip.appendChild(btn);
+    }
+
+    prevBtn.disabled = startIdx <= 0;
+    nextBtn.disabled = startIdx + WINDOW >= TOTAL;
+  }
+
+  // init selectedDate
+  selectedDate = {
+    label:      dates[0].toLocaleDateString('ru-RU', { day:'numeric', month:'long' }),
+    shortLabel: dates[0].toLocaleDateString('ru-RU', { day:'numeric', month:'long' })
+  };
+
+  prevBtn.addEventListener('click', () => { if (startIdx > 0) { startIdx--; render(); } });
+  nextBtn.addEventListener('click', () => { if (startIdx + WINDOW < TOTAL) { startIdx++; render(); } });
+
+  window.calendarRender = render;
+  render();
+})();
+
+// ============================================================
+// SESSION TIME PILLS
+// ============================================================
+document.querySelectorAll('.time-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    // deselect all
+    document.querySelectorAll('.time-pill').forEach(p => {
+      p.classList.remove('on');
+      p.setAttribute('aria-checked','false');
+    });
+    pill.classList.add('on');
+    pill.setAttribute('aria-checked','true');
+    selectedSession = { time: pill.dataset.time, hall: pill.dataset.hall };
+    updateStickyCta();
+  });
+});
+
+// ============================================================
+// STICKY CTA
+// ============================================================
+const stickyCta = document.getElementById('stickyCta');
+
+function updateStickyCta() {
+  if (selectedSession && selectedDate) {
+    document.getElementById('ctaDate').textContent    = selectedDate.label;
+    document.getElementById('ctaSession').textContent = selectedSession.time + ' · ' + selectedSession.hall;
+    stickyCta.classList.add('visible');
+    stickyCta.setAttribute('aria-hidden','false');
+  } else {
+    stickyCta.classList.remove('visible');
+    stickyCta.setAttribute('aria-hidden','true');
+  }
+}
+
+document.getElementById('closeCta').addEventListener('click', () => {
+  document.querySelectorAll('.time-pill').forEach(p => {
+    p.classList.remove('on');
+    p.setAttribute('aria-checked', 'false');
+  });
+  selectedSession = null;
+  updateStickyCta();
+});
+
+// ============================================================
+// SEAT MODAL
+// ============================================================
+const seatOverlay  = document.getElementById('seatOverlay');
+const seatGrid     = document.getElementById('seatGrid');
+
+function buildSeatGrid() {
+  seatGrid.innerHTML = '';
+  const ROWS = ['A','B','C','D','E','F','G','H'];
+  const COLS = 13;
+
+  ROWS.forEach((row, ri) => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'seat-row';
+    rowEl.setAttribute('role','row');
+    rowEl.setAttribute('aria-label', T[currentLang]['ss-row'] + ' ' + row);
+
+    const lbl = document.createElement('span');
+    lbl.className = 'seat-row__label';
+    lbl.setAttribute('aria-hidden','true');
+    lbl.textContent = row;
+    rowEl.appendChild(lbl);
+
+    for (let c = 1; c <= COLS; c++) {
+      const key     = row + c;
+      const isPrem  = PREMIUM_ROWS.includes(row);
+      const isOcc   = OCCUPIED.has(key);
+      const isSel   = selectedSeats.includes(key);
+
+      const btn = document.createElement('button');
+      btn.setAttribute('role','gridcell');
+      btn.dataset.seat = key;
+
+      let cls = 'seat';
+      if (isPrem) cls += ' seat--premium';
+      if (isOcc)  cls += ' seat--occupied';
+      if (isSel)  cls += ' seat--selected';
+      btn.className = cls;
+
+      if (isOcc) {
+        btn.setAttribute('aria-disabled','true');
+        btn.setAttribute('aria-label', `${T[currentLang]['ss-row']} ${row}, ${T[currentLang]['sm-seat']} ${c}, ${T[currentLang]['ss-occ']}`);
+        btn.setAttribute('tabindex','-1');
+      } else {
+        btn.setAttribute('aria-selected', isSel ? 'true' : 'false');
+        btn.setAttribute('aria-label', `${T[currentLang]['ss-row']} ${row}, ${T[currentLang]['sm-seat']} ${c}, ${isSel ? T[currentLang]['ss-sel'] : T[currentLang]['ss-free']}`);
+        btn.addEventListener('click', () => toggleSeat(key, btn, isPrem));
+        btn.addEventListener('keydown', e => handleSeatKey(e, rowEl, row, c));
+      }
+
+      rowEl.appendChild(btn);
+    }
+
+    seatGrid.appendChild(rowEl);
+  });
+
+  updateSeatSummary();
+}
+
+function toggleSeat(key, btn, isPrem) {
+  const idx = selectedSeats.indexOf(key);
+  if (idx === -1) {
+    selectedSeats.push(key);
+    if (!seatTicketTypes[key]) seatTicketTypes[key] = 'adult';
+    btn.classList.add('seat--selected');
+    btn.setAttribute('aria-selected','true');
+    btn.setAttribute('aria-label', btn.getAttribute('aria-label').replace(T[currentLang]['ss-free'], T[currentLang]['ss-sel']));
+  } else {
+    selectedSeats.splice(idx, 1);
+    delete seatTicketTypes[key];
+    btn.classList.remove('seat--selected');
+    btn.setAttribute('aria-selected','false');
+    btn.setAttribute('aria-label', btn.getAttribute('aria-label').replace(T[currentLang]['ss-sel'], T[currentLang]['ss-free']));
+  }
+  updateSeatSummary();
+}
+
+function handleSeatKey(e, rowEl, rowChar, colNum) {
+  const seats = [...seatGrid.querySelectorAll('.seat:not(.seat--occupied)')];
+  const cur   = e.currentTarget;
+  const idx   = seats.indexOf(cur);
+
+  let next = null;
+  if (e.key === 'ArrowRight') next = seats[idx + 1];
+  if (e.key === 'ArrowLeft')  next = seats[idx - 1];
+  if (e.key === 'ArrowDown') {
+    const COLS = 13;
+    next = seats[idx + COLS];
+  }
+  if (e.key === 'ArrowUp') {
+    const COLS = 13;
+    next = seats[idx - COLS];
+  }
+  if (next) { e.preventDefault(); next.focus(); }
+}
+
+function updateSeatSummary() {
+  const cont       = document.getElementById('openCheckout');
+  const body       = document.getElementById('seatSummaryBody');
+  const totalEl    = document.getElementById('summaryTotal');
+
+  if (selectedSeats.length === 0) {
+    body.innerHTML = `<div class="seat-summary__empty">${T[currentLang]['sm-empty']}</div>`;
+    totalEl.textContent = '—';
+    cont.disabled = true;
+    return;
+  }
+
+  body.innerHTML = '';
+  let total = 0;
+
+  selectedSeats.forEach(key => {
+    if (!seatTicketTypes[key]) seatTicketTypes[key] = 'adult';
+    const price = getSeatPrice(key);
+    total += price;
+    const label = key[0] + '-' + key.slice(1);
+
+    const row = document.createElement('div');
+    row.className = 'seat-summary__seat-row';
+    row.innerHTML = `
+      <span class="seat-summary__seat-label">Место ${label}</span>
+      <div class="seat-summary__seat-controls">
+        <select class="seat-ticket-select" data-seat="${key}" aria-label="Тип билета для места ${label}">
+          ${TICKET_TYPES.map(t =>
+            `<option value="${t.value}"${seatTicketTypes[key] === t.value ? ' selected' : ''}>${T[currentLang][t.labelKey]}</option>`
+          ).join('')}
+        </select>
+        <span class="seat-summary__seat-price" id="price-${key}">${price} ₽</span>
+      </div>`;
+
+    row.querySelector('select').addEventListener('change', e => {
+      seatTicketTypes[key] = e.target.value;
+      updateSeatSummary();
+    });
+
+    body.appendChild(row);
+  });
+
+  totalEl.textContent = total + ' ₽';
+  cont.disabled = false;
+}
+
+function openSeatModal() {
+  document.getElementById('seatModalDate').textContent    = selectedDate?.label ?? '—';
+  document.getElementById('seatModalSession').textContent = selectedSession ? selectedSession.time + ' · ' + selectedSession.hall : '—';
+  buildSeatGrid();
+  seatOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  trapFocus(seatOverlay);
+  document.getElementById('closeSeatModal').focus();
+}
+
+function resetSeats() {
+  selectedSeats   = [];
+  seatTicketTypes = {};
+}
+
+function closeSeatModal() {
+  resetSeats();
+  seatOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('openSeatModal').focus();
+}
+
+document.getElementById('openSeatModal').addEventListener('click', openSeatModal);
+document.getElementById('closeSeatModal').addEventListener('click', closeSeatModal);
+seatOverlay.addEventListener('click', e => { if (e.target === seatOverlay) closeSeatModal(); });
+
+// ============================================================
+// CHECKOUT MODAL
+// ============================================================
+const checkoutOverlay = document.getElementById('checkoutOverlay');
+let currentStep = 1;
+
+function openCheckout() {
+  // populate step 1 data
+  const seats = selectedSeats.map(s => s[0] + '-' + s.slice(1)).join(', ');
+  document.getElementById('checkoutSub').textContent =
+    (selectedDate?.label ?? '—') + ' · ' + (selectedSession?.time ?? '—') + ' · ' + (selectedSession?.hall ?? '—');
+  document.getElementById('checkoutSeats').textContent = seats;
+  document.getElementById('confirmInfo').textContent =
+    (selectedDate?.label ?? '—') + ' · ' + (selectedSession?.time ?? '—') + ' · ' + (selectedSession?.hall ?? '—');
+  document.getElementById('confirmSeats').textContent = seats;
+  updateCheckoutTotal();
+
+  currentStep = 1;
+  goToCheckoutStep(1);
+
+  // close seat modal first, then open checkout
+  seatOverlay.classList.remove('open');
+  checkoutOverlay.classList.add('open');
+  trapFocus(checkoutOverlay);
+  document.getElementById('closeCheckout').focus();
+}
+
+function closeCheckoutModal() {
+  resetSeats();
+  checkoutOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('openSeatModal').focus();
+}
+
+function goToCheckoutStep(n) {
+  currentStep = n;
+  ['step1','step2','step3'].forEach((id, i) => {
+    const el  = document.getElementById(id);
+    const ind = document.getElementById('step-ind-' + (i + 1));
+    el.classList.toggle('active', i + 1 === n);
+    ind.classList.toggle('active', i + 1 === n);
+    ind.classList.toggle('done',   i + 1 < n);
+    ind.removeAttribute('aria-current');
+    if (i + 1 === n) ind.setAttribute('aria-current','step');
+  });
+}
+
+function updateCheckoutTotal() {
+  const container = document.getElementById('checkoutPriceRows');
+  container.innerHTML = '';
+  let total = 0;
+
+  selectedSeats.forEach(key => {
+    const price = getSeatPrice(key);
+    const label = key[0] + '-' + key.slice(1);
+    const tt    = TICKET_TYPES.find(t => t.value === (seatTicketTypes[key] || 'adult'));
+    total += price;
+
+    const row = document.createElement('div');
+    row.className = 'order-row';
+    row.innerHTML =
+      `<span class="order-row__label">${T[currentLang]['sm-seat']} ${label} (${T[currentLang][tt.labelKey]})</span>` +
+      `<span>${price} ₽</span>`;
+    container.appendChild(row);
+  });
+
+  document.getElementById('checkoutTotal').textContent = total + ' ₽';
+  document.getElementById('payAmount').textContent     = total + ' ₽';
+}
+
+document.getElementById('openCheckout').addEventListener('click', openCheckout);
+document.getElementById('closeCheckout').addEventListener('click', () => {
+  resetSeats();
+  checkoutOverlay.classList.remove('open');
+  seatOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('openSeatModal').focus();
+});
+
+document.getElementById('backToSeats').addEventListener('click', () => {
+  checkoutOverlay.classList.remove('open');
+  openSeatModal();
+});
+
+document.getElementById('toStep2').addEventListener('click', () => goToCheckoutStep(2));
+document.getElementById('backToStep1').addEventListener('click', () => goToCheckoutStep(1));
+
+document.getElementById('toPay').addEventListener('click', () => goToCheckoutStep(3));
+
+document.getElementById('closeAll').addEventListener('click', () => {
+  checkoutOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  window.location.href = 'index.html';
+});
+
+document.getElementById('downloadTicket').addEventListener('click', () => {
+  alert('Билет будет отправлен на указанный email.');
+});
+
+checkoutOverlay.addEventListener('click', e => {
+  if (e.target === checkoutOverlay) closeCheckoutModal();
+});
+
+// Payment method selection
+document.querySelectorAll('.pay-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.pay-card').forEach(c => {
+      c.classList.remove('selected');
+      c.setAttribute('aria-checked','false');
+    });
+    card.classList.add('selected');
+    card.setAttribute('aria-checked','true');
+  });
+});
+
+// ============================================================
+// FOCUS TRAP
+// ============================================================
+function trapFocus(modal) {
+  const focusable = modal.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  const first = focusable[0];
+  const last  = focusable[focusable.length - 1];
+
+  function onKey(e) {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+    }
+  }
+
+  modal.addEventListener('keydown', onKey);
+  modal._trapCleanup = () => modal.removeEventListener('keydown', onKey);
+}
+
+// ============================================================
+// ESCAPE to close modals
+// ============================================================
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (checkoutOverlay.classList.contains('open')) { closeCheckoutModal(); return; }
+  if (seatOverlay.classList.contains('open'))     { closeSeatModal();     return; }
+});
+</script>
+</body>
+</html>
