@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дьявол носит Prada 2 — Cinerix</title>
+<title>The Devil Wears Prada 2 — Cinerix</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=optional" rel="stylesheet">
 <style>
 /* ============================================================
    RESET & TOKENS
@@ -157,20 +157,6 @@ button { font-family: inherit; }
 .nav__search-input:focus { border-color: var(--cyan); outline: none; }
 .nav__search.open .nav__search-input { width: 248px; opacity: 1; pointer-events: all; }
 .nav__search.open .nav__search-btn  { opacity: 0; pointer-events: none; }
-
-.nav__lang {
-  display: flex; background: rgba(255,255,255,.07);
-  border-radius: 100px; padding: 3px; gap: 2px;
-}
-.lang-btn {
-  background: none; border: none; cursor: pointer;
-  font-family: var(--font-d); font-size: 10px; font-weight: 700;
-  letter-spacing: .06em; color: var(--grey);
-  padding: 5px 11px; border-radius: 100px;
-  transition: background .2s, color .2s;
-}
-.lang-btn.active { background: var(--cyan); color: var(--black); }
-.lang-btn:hover:not(.active) { color: var(--cream); }
 
 /* ============================================================
    BREADCRUMB
@@ -749,15 +735,15 @@ button { font-family: inherit; }
 </head>
 <body>
 
-<a href="#main" class="skip-link">Перейти к содержимому</a>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <!-- BANNER -->
-<div class="banner" id="banner" role="region" aria-label="Анонс события">
+<div class="banner" id="banner" role="region" aria-label="Event announcement">
   <div class="banner__inner">
     <span class="banner__star" aria-hidden="true">★</span>
-    <span class="banner__text" data-i18n="b-text">Кино в парке — 12 июля, Парк Горького</span>
-    <a href="special.html" class="banner__link" data-i18n="b-link">Подробнее&nbsp;→</a>
-    <button class="banner__close" id="bannerClose" aria-label="Закрыть объявление">
+    <span class="banner__text">Cinema in the Park — July 12, Gorky Park</span>
+    <a href="special.html" class="banner__link">Learn more&nbsp;→</a>
+    <button class="banner__close" id="bannerClose" aria-label="Close announcement">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
         <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
@@ -767,33 +753,29 @@ button { font-family: inherit; }
 
 <!-- NAV -->
 <header class="nav-wrap" id="navWrap">
-  <nav class="nav" aria-label="Основная навигация">
-    <a href="index.html" class="nav__logo" aria-label="Cinerix — на главную">Cinerix<em>.</em></a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html" class="nav__logo" aria-label="Cinerix — go to homepage">Cinerix<em>.</em></a>
     <div class="nav__links">
-      <a href="films.html"   class="nav__link" data-i18n="n-films">Фильмы</a>
+      <a href="films.html"   class="nav__link">Films</a>
       <a href="special.html" class="nav__link" style="position:relative">
-        <span data-i18n="n-special">Спецпоказы</span><span class="nav__badge" aria-label="Есть новые события"></span>
+        <span>Special Screenings</span><span class="nav__badge" aria-label="New events available"></span>
       </a>
-      <a href="soon.html"    class="nav__link" data-i18n="n-soon">Скоро в кино</a>
-      <a href="about.html"   class="nav__link" data-i18n="n-about">О кинотеатре</a>
+      <a href="soon.html"    class="nav__link">Coming Soon</a>
+      <a href="about.html"   class="nav__link">About</a>
     </div>
     <div class="nav__right">
       <div class="nav__search" id="navSearch">
         <button class="nav__search-btn" id="searchBtn"
-                aria-label="Поиск фильмов" aria-expanded="false" aria-controls="searchInput">
+                aria-label="Search films" aria-expanded="false" aria-controls="searchInput">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             <circle cx="7.5" cy="7.5" r="5" stroke="currentColor" stroke-width="1.5"/>
             <path d="M11.5 11.5L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </button>
         <input id="searchInput" type="search" class="nav__search-input"
-               placeholder="Название фильма…" aria-label="Введите название фильма">
+               placeholder="Film title…" aria-label="Enter film title">
       </div>
-      <div class="nav__lang" role="group" aria-label="Выбрать язык">
-        <button class="lang-btn active" id="lRu" aria-pressed="true">RU</button>
-        <button class="lang-btn"        id="lEn" aria-pressed="false">EN</button>
-      </div>
-      <a href="#sessions" class="btn btn-primary" data-i18n="n-cta">Купить билет</a>
+      <a href="#sessions" class="btn btn-primary">Buy Ticket</a>
     </div>
   </nav>
 </header>
@@ -801,19 +783,19 @@ button { font-family: inherit; }
 <main id="main">
 
   <!-- BREADCRUMB -->
-  <nav class="breadcrumb" aria-label="Навигация по сайту">
+  <nav class="breadcrumb" aria-label="Site navigation">
     <ol class="breadcrumb__list">
-      <li><a href="index.html" class="breadcrumb__link" data-i18n="bc-home">Главная</a></li>
+      <li><a href="index.html" class="breadcrumb__link">Home</a></li>
       <li class="breadcrumb__sep" aria-hidden="true">›</li>
-      <li class="breadcrumb__current" aria-current="page">Дьявол носит Prada 2</li>
+      <li class="breadcrumb__current" aria-current="page">The Devil Wears Prada 2</li>
     </ol>
   </nav>
 
   <!-- FILM HERO -->
-  <section class="film-hero" aria-label="Информация о фильме">
+  <section class="film-hero" aria-label="Film information">
     <div class="film-hero__bg"></div>
     <div class="film-hero__overlay"></div>
-    <span class="film-hero__age-badge" aria-label="Возрастное ограничение 16+">16+</span>
+    <span class="film-hero__age-badge" aria-label="Age rating 16+">16+</span>
 
     <div class="film-hero__content">
       <!-- Row 1: title left + trailer button right -->
@@ -821,31 +803,31 @@ button { font-family: inherit; }
         <div class="film-hero__left">
           <div class="film-hero__pills">
             <span class="film-hero__pill">2026</span>
-            <span class="film-hero__pill" data-i18n="fp-genre">Комедия · Драма</span>
+            <span class="film-hero__pill">Comedy · Drama</span>
           </div>
-          <h1 class="film-hero__title">Дьявол носит<br>Prada 2</h1>
-          <p class="film-hero__director" data-i18n="fp-dir">Реж. Алин Брош МакКенна</p>
+          <h1 class="film-hero__title">The Devil Wears<br>Prada 2</h1>
+          <p class="film-hero__director">Dir. Aline Brosh McKenna</p>
         </div>
 
-        <a href="#" class="film-hero__trailer" aria-label="Смотреть трейлер к фильму">
+        <a href="https://www.youtube.com/watch?v=e9HXmMnUEdE" target="_blank" rel="noopener" class="film-hero__trailer" aria-label="Watch the film trailer">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/>
             <path d="M6.5 5.5L11 8L6.5 10.5V5.5Z" fill="currentColor"/>
           </svg>
-          <span data-i18n="fp-trailer">Трейлер</span>
+          <span>Trailer</span>
         </a>
       </div>
 
       <!-- Row 2: description strip over image, full-bleed bg -->
       <div class="film-hero__desc-strip-outer">
         <div class="film-hero__desc-strip">
-          <p class="film-hero__desc-text" data-i18n="fp-desc">Андреа Сакс возвращается в мир моды — теперь уже по другую сторону баррикад. Спустя десять лет она — главный редактор собственного медиапроекта, бросающего вызов Runway. Миранда Пристли по-прежнему держит индустрию железной рукой. Новое противостояние. Старая злость. И неожиданный союз, который никто не ожидал.</p>
+          <p class="film-hero__desc-text">Andrea Sachs returns to the fashion world — now on the other side. Ten years later, she is editor-in-chief of her own media project challenging Runway. Miranda Priestly still rules the industry with an iron fist. A new confrontation. The same old fury. And an unexpected alliance no one saw coming.</p>
           <div class="film-hero__desc-sep" aria-hidden="true"></div>
           <div class="film-hero__desc-meta">
-            <div class="film-hero__desc-meta-row"><span data-i18n="fp-cast-lbl">В ролях</span><b>Мерил Стрип, Энн Хэтэуэй, Эмили Блант</b></div>
-            <div class="film-hero__desc-meta-row"><span data-i18n="fp-lang-lbl">Язык</span><b data-i18n="fp-lang-val">English / Рус. субтитры</b></div>
-            <div class="film-hero__desc-meta-row"><span data-i18n="fp-country-lbl">Страна</span><b data-i18n="fp-country-val">США</b></div>
-            <div class="film-hero__desc-meta-row"><span data-i18n="fp-dur-lbl">Длительность</span><b data-i18n="fp-dur-val">2 ч 15 мин</b></div>
+            <div class="film-hero__desc-meta-row"><span>Cast</span><b>Meryl Streep, Anne Hathaway, Emily Blunt</b></div>
+            <div class="film-hero__desc-meta-row"><span>Language</span><b>English / Eng. subtitles</b></div>
+            <div class="film-hero__desc-meta-row"><span>Country</span><b>USA</b></div>
+            <div class="film-hero__desc-meta-row"><span>Duration</span><b>2 h 15 min</b></div>
           </div>
         </div>
       </div>
@@ -853,16 +835,16 @@ button { font-family: inherit; }
   </section>
 
   <!-- CALENDAR STRIP (identical to homepage) -->
-  <section class="cal-outer" aria-label="Расписание по датам">
-    <button class="cal-arrow cal-arrow--prev" id="calPrev" aria-label="Предыдущие даты">
+  <section class="cal-outer" aria-label="Schedule by date">
+    <button class="cal-arrow cal-arrow--prev" id="calPrev" aria-label="Previous dates">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
         <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
     <div class="cal-strip">
-      <div class="cal-strip__inner" id="calStrip" role="group" aria-label="Выберите дату"></div>
+      <div class="cal-strip__inner" id="calStrip" role="group" aria-label="Select a date"></div>
     </div>
-    <button class="cal-arrow cal-arrow--next" id="calNext" aria-label="Следующие даты">
+    <button class="cal-arrow cal-arrow--next" id="calNext" aria-label="Next dates">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
         <path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -870,32 +852,32 @@ button { font-family: inherit; }
   </section>
 
   <!-- SESSIONS -->
-  <section class="film-schedule" id="sessions" aria-label="Расписание сеансов">
-    <h2 class="film-schedule__heading" data-i18n="fp-sessions">Сеансы</h2>
+  <section class="film-schedule" id="sessions" aria-label="Session schedule">
+    <h2 class="film-schedule__heading">Sessions</h2>
 
     <!-- Date pills (hidden, driven by calendar strip above) -->
     <div style="display:none" id="dateRow"></div>
 
     <!-- Session grid -->
-    <div class="session-grid" id="sessionGrid" aria-label="Выберите сеанс">
+    <div class="session-grid" id="sessionGrid" aria-label="Choose a session">
 
       <div class="hall-group">
-        <div class="hall-label"><span data-i18n="fp-hall1">Зал 1</span><em data-i18n="fp-hall1-em">— IMAX</em></div>
-        <div class="session-times" role="radiogroup" aria-label="Сеансы в Зал 1 IMAX" id="hall1Times">
-          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 1 — IMAX" data-time="11:00" aria-label="11:00, Зал 1 IMAX">11:00</button>
-          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 1 — IMAX" data-time="14:30" aria-label="14:30, Зал 1 IMAX">14:30</button>
-          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 1 — IMAX" data-time="17:45" aria-label="17:45, Зал 1 IMAX">17:45</button>
-          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 1 — IMAX" data-time="21:00" aria-label="21:00, Зал 1 IMAX">21:00</button>
+        <div class="hall-label"><span>Hall 1</span><em>— IMAX</em></div>
+        <div class="session-times" role="radiogroup" aria-label="Sessions in Hall 1 IMAX" id="hall1Times">
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Hall 1 — IMAX" data-time="11:00" aria-label="11:00, Hall 1 IMAX">11:00</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Hall 1 — IMAX" data-time="14:30" aria-label="14:30, Hall 1 IMAX">14:30</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Hall 1 — IMAX" data-time="17:45" aria-label="17:45, Hall 1 IMAX">17:45</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Hall 1 — IMAX" data-time="21:00" aria-label="21:00, Hall 1 IMAX">21:00</button>
         </div>
       </div>
 
       <div class="hall-group">
-        <div class="hall-label"><span data-i18n="fp-hall2">Зал 2</span><em data-i18n="fp-hall2-em">— Стандарт</em></div>
-        <div class="session-times" role="radiogroup" aria-label="Сеансы в Зал 2 Стандарт" id="hall2Times">
-          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 2 — Стандарт" data-time="10:00" aria-label="10:00, Зал 2 Стандарт">10:00</button>
-          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 2 — Стандарт" data-time="13:15" aria-label="13:15, Зал 2 Стандарт">13:15</button>
-          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 2 — Стандарт" data-time="16:30" aria-label="16:30, Зал 2 Стандарт">16:30</button>
-          <button class="time-pill" role="radio" aria-checked="false" data-hall="Зал 2 — Стандарт" data-time="19:45" aria-label="19:45, Зал 2 Стандарт">19:45</button>
+        <div class="hall-label"><span>Hall 2</span><em>— Standard</em></div>
+        <div class="session-times" role="radiogroup" aria-label="Sessions in Hall 2 Standard" id="hall2Times">
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Hall 2 — Standard" data-time="10:00" aria-label="10:00, Hall 2 Standard">10:00</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Hall 2 — Standard" data-time="13:15" aria-label="13:15, Hall 2 Standard">13:15</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Hall 2 — Standard" data-time="16:30" aria-label="16:30, Hall 2 Standard">16:30</button>
+          <button class="time-pill" role="radio" aria-checked="false" data-hall="Hall 2 — Standard" data-time="19:45" aria-label="19:45, Hall 2 Standard">19:45</button>
         </div>
       </div>
 
@@ -905,19 +887,19 @@ button { font-family: inherit; }
 </main>
 
 <!-- STICKY CTA BAR -->
-<div class="sticky-cta" id="stickyCta" role="region" aria-label="Купить билет на выбранный сеанс" aria-live="polite">
+<div class="sticky-cta" id="stickyCta" role="region" aria-label="Buy a ticket for the selected session" aria-live="polite">
   <div class="sticky-cta__inner">
     <div class="sticky-cta__info">
-      <strong>Дьявол носит Prada 2</strong>
+      <strong>The Devil Wears Prada 2</strong>
       <span class="sticky-cta__sep">·</span>
       <span id="ctaDate">—</span>
       <span class="sticky-cta__sep">·</span>
       <span id="ctaSession">—</span>
     </div>
-    <button class="btn btn-primary" id="openSeatModal" style="height:48px;font-size:14px;padding:0 32px;" data-i18n="fp-buy">
-      Купить билет
+    <button class="btn btn-primary" id="openSeatModal" style="height:48px;font-size:14px;padding:0 32px;">
+      Buy Ticket
     </button>
-    <button class="sticky-cta__close" id="closeCta" aria-label="Закрыть и сбросить выбор сеанса">
+    <button class="sticky-cta__close" id="closeCta" aria-label="Close and reset session selection">
       <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
         <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
@@ -926,42 +908,42 @@ button { font-family: inherit; }
 </div>
 
 <!-- FOOTER -->
-<footer class="footer" aria-label="Подвал сайта">
+<footer class="footer" aria-label="Site footer">
   <div class="footer__top">
     <div>
       <a href="index.html" class="footer__logo">Cinerix<em>.</em></a>
-      <p class="footer__tagline">Кино, которое стоит увидеть.</p>
+      <p class="footer__tagline">Movies worth watching.</p>
     </div>
     <div>
-      <div class="footer__col-title" data-i18n="f-films">Фильмы</div>
+      <div class="footer__col-title">Films</div>
       <ul class="footer__links">
-        <li><a href="films.html"   class="footer__link" data-i18n="f-now">Сейчас в кино</a></li>
-        <li><a href="soon.html"    class="footer__link" data-i18n="f-soon">Скоро</a></li>
-        <li><a href="special.html" class="footer__link" data-i18n="f-spec">Спецпоказы</a></li>
-        <li><a href="archive.html" class="footer__link" data-i18n="f-arch">Архив</a></li>
+        <li><a href="films.html"   class="footer__link">Now Showing</a></li>
+        <li><a href="soon.html"    class="footer__link">Coming Soon</a></li>
+        <li><a href="special.html" class="footer__link">Special Screenings</a></li>
+        <li><a href="archive.html" class="footer__link">Archive</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer__col-title" data-i18n="f-info">Информация</div>
+      <div class="footer__col-title">Information</div>
       <ul class="footer__links">
-        <li><a href="about.html" class="footer__link" data-i18n="f-about">О кинотеатре</a></li>
-        <li><a href="#"          class="footer__link" data-i18n="f-ads">Реклама</a></li>
-        <li><a href="#"          class="footer__link" data-i18n="f-rent">Аренда залов</a></li>
-        <li><a href="#"          class="footer__link" data-i18n="f-press">Пресса</a></li>
+        <li><a href="about.html" class="footer__link">About</a></li>
+        <li><a href="#"          class="footer__link">Advertising</a></li>
+        <li><a href="#"          class="footer__link">Room Rental</a></li>
+        <li><a href="#"          class="footer__link">Press</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer__col-title" data-i18n="f-cont">Контакты</div>
+      <div class="footer__col-title">Contacts</div>
       <ul class="footer__links">
-        <li><a href="#"                      class="footer__link">ул. Новый Арбат, 15</a></li>
+        <li><a href="#"                      class="footer__link">15 Novy Arbat St.</a></li>
         <li><a href="tel:+74950000000"       class="footer__link">+7 (495) 000-00-00</a></li>
         <li><a href="mailto:info@cinerix.ru" class="footer__link">info@cinerix.ru</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer__col-title" data-i18n="f-soc">Соцсети</div>
+      <div class="footer__col-title">Social</div>
       <ul class="footer__links">
-        <li><a href="#" class="footer__link">ВКонтакте</a></li>
+        <li><a href="#" class="footer__link">VKontakte</a></li>
         <li><a href="#" class="footer__link">Telegram</a></li>
         <li><a href="#" class="footer__link">YouTube</a></li>
       </ul>
@@ -970,8 +952,8 @@ button { font-family: inherit; }
   <div class="footer__bottom">
     <p class="footer__copy">© 2026 Cinerix</p>
     <div class="footer__legal">
-      <a href="#">Политика конфиденциальности</a>
-      <a href="#">Пользовательское соглашение</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
     </div>
   </div>
 </footer>
@@ -984,36 +966,36 @@ button { font-family: inherit; }
   <div class="modal seat-modal" id="seatModalPanel">
     <div class="modal__bar">
       <div class="modal__header" id="seatModalTitle">
-        Дьявол носит Prada 2<span>·</span><span id="seatModalDate">—</span><span>·</span><span id="seatModalSession">—</span>
+        The Devil Wears Prada 2<span>·</span><span id="seatModalDate">—</span><span>·</span><span id="seatModalSession">—</span>
       </div>
-      <button class="modal__close" id="closeSeatModal" aria-label="Закрыть выбор мест">
+      <button class="modal__close" id="closeSeatModal" aria-label="Close seat selection">
         <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
           <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </button>
     </div>
 
-    <div class="screen-bar" aria-hidden="true" data-i18n="sm-screen">— ЭКРАН —</div>
+    <div class="screen-bar" aria-hidden="true">— SCREEN —</div>
 
-    <div class="seat-grid" role="grid" aria-label="Схема зала" id="seatGrid"></div>
+    <div class="seat-grid" role="grid" aria-label="Seating plan" id="seatGrid"></div>
 
-    <div class="seat-legend" aria-label="Легенда мест">
-      <div class="legend-item"><div class="legend-swatch ls-avail" aria-hidden="true"></div><span data-i18n="sm-avail">Свободно</span></div>
-      <div class="legend-item"><div class="legend-swatch ls-sel"   aria-hidden="true"></div><span data-i18n="sm-sel">Выбрано</span></div>
-      <div class="legend-item"><div class="legend-swatch ls-occ"   aria-hidden="true"></div><span data-i18n="sm-occ">Занято</span></div>
+    <div class="seat-legend" aria-label="Seat legend">
+      <div class="legend-item"><div class="legend-swatch ls-avail" aria-hidden="true"></div><span>Available</span></div>
+      <div class="legend-item"><div class="legend-swatch ls-sel"   aria-hidden="true"></div><span>Selected</span></div>
+      <div class="legend-item"><div class="legend-swatch ls-occ"   aria-hidden="true"></div><span>Occupied</span></div>
     </div>
 
     <div class="seat-summary" id="seatSummary">
       <div id="seatSummaryBody"></div>
       <hr class="seat-summary__divider">
       <div class="seat-summary__row">
-        <span class="seat-summary__label" data-i18n="sm-total">Итого</span>
+        <span class="seat-summary__label">Total</span>
         <span class="seat-summary__total" id="summaryTotal">—</span>
       </div>
       <div class="seat-summary__cta">
         <button class="btn btn-primary" id="openCheckout"
                 style="height:48px;font-size:14px;padding:0 36px;" disabled>
-          <span data-i18n="sm-cont">Продолжить</span>
+          <span>Continue</span>
         </button>
       </div>
     </div>
@@ -1027,7 +1009,7 @@ button { font-family: inherit; }
      aria-labelledby="checkoutTitle">
   <div class="modal checkout-modal" id="checkoutPanel">
     <div class="modal__bar">
-      <button class="modal__close" id="closeCheckout" aria-label="Закрыть оформление заказа" style="margin-left:auto">
+      <button class="modal__close" id="closeCheckout" aria-label="Close checkout" style="margin-left:auto">
         <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
           <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
@@ -1035,88 +1017,88 @@ button { font-family: inherit; }
     </div>
 
     <!-- Steps indicator -->
-    <div class="checkout-steps" role="list" aria-label="Шаги оформления">
+    <div class="checkout-steps" role="list" aria-label="Checkout steps">
       <div class="checkout-step active" role="listitem" id="step-ind-1" aria-current="step">
         <div class="step-dot">1</div>
-        <span data-i18n="co-step1">Заказ</span>
+        <span>Order</span>
       </div>
       <div class="step-line" aria-hidden="true"></div>
       <div class="checkout-step" role="listitem" id="step-ind-2">
         <div class="step-dot">2</div>
-        <span data-i18n="co-step2">Оплата</span>
+        <span>Payment</span>
       </div>
       <div class="step-line" aria-hidden="true"></div>
       <div class="checkout-step" role="listitem" id="step-ind-3">
         <div class="step-dot">3</div>
-        <span data-i18n="co-step3">Готово</span>
+        <span>Done</span>
       </div>
     </div>
 
     <!-- STEP 1: ORDER REVIEW -->
     <div class="checkout-step-content active" id="step1" aria-labelledby="checkoutTitle">
-      <div class="order-review__title" id="checkoutTitle" data-i18n="co-title">Ваш заказ</div>
+      <div class="order-review__title" id="checkoutTitle">Your Order</div>
       <div class="order-review__sub" id="checkoutSub">—</div>
 
       <div class="order-row">
-        <span class="order-row__label" data-i18n="co-seats">Места</span>
+        <span class="order-row__label">Seats</span>
         <span id="checkoutSeats">—</span>
       </div>
       <div id="checkoutPriceRows"></div>
 
       <div class="order-total">
-        <span style="color:var(--grey);font-family:var(--font-b);font-size:15px;font-weight:400" data-i18n="co-total">Итого</span>
+        <span style="color:var(--grey);font-family:var(--font-b);font-size:15px;font-weight:400">Total</span>
         <span id="checkoutTotal">—</span>
       </div>
 
       <div class="checkout-actions">
-        <button class="btn-back" id="backToSeats"><span class="arr">←</span> <span data-i18n="co-back">Изменить места</span></button>
-        <button class="btn btn-primary" id="toStep2" style="height:48px;padding:0 36px;font-size:14px;" data-i18n="co-next">Далее
+        <button class="btn-back" id="backToSeats"><span class="arr">←</span> <span>Change seats</span></button>
+        <button class="btn btn-primary" id="toStep2" style="height:48px;padding:0 36px;font-size:14px;">Continue
         </button>
       </div>
     </div>
 
     <!-- STEP 2: PAYMENT -->
     <div class="checkout-step-content" id="step2">
-      <div class="order-review__title" data-i18n="co-pay-title">Оплата</div>
-      <div class="order-review__sub" style="margin-bottom:20px" data-i18n="co-pay-sub">Выберите способ оплаты и введите контактные данные</div>
+      <div class="order-review__title">Payment</div>
+      <div class="order-review__sub" style="margin-bottom:20px">Select a payment method and enter your contact details</div>
 
-      <div class="pay-methods" role="radiogroup" aria-label="Способ оплаты">
+      <div class="pay-methods" role="radiogroup" aria-label="Payment method">
         <button class="pay-card selected" role="radio" aria-checked="true" data-pay="sber">
           <span class="pay-card__icon">🟢</span>
           <div class="pay-card__name">SberPay</div>
-          <div class="pay-card__sub" data-i18n="co-sber-sub">Быстрая оплата</div>
+          <div class="pay-card__sub">Fast payment</div>
         </button>
         <button class="pay-card" role="radio" aria-checked="false" data-pay="sbp">
           <span class="pay-card__icon">🏦</span>
-          <div class="pay-card__name" data-i18n="co-sbp-name">СБП</div>
-          <div class="pay-card__sub" data-i18n="co-sbp-sub">Быстрые переводы</div>
+          <div class="pay-card__name">SBP</div>
+          <div class="pay-card__sub">Instant transfers</div>
         </button>
         <button class="pay-card" role="radio" aria-checked="false" data-pay="card">
           <span class="pay-card__icon">💳</span>
-          <div class="pay-card__name" data-i18n="co-card-name">Банковская карта</div>
-          <div class="pay-card__sub" data-i18n="co-card-sub">Visa / Mastercard / МИР</div>
+          <div class="pay-card__name">Bank card</div>
+          <div class="pay-card__sub">Visa / Mastercard / MIR</div>
         </button>
       </div>
 
       <form class="contact-form" id="contactForm" novalidate>
         <div class="form-field">
-          <label class="form-label" for="fname" data-i18n="co-name-lbl">Имя</label>
-          <input class="form-input" type="text" id="fname" placeholder="Ваше имя" autocomplete="given-name">
+          <label class="form-label" for="fname">Name</label>
+          <input class="form-input" type="text" id="fname" placeholder="Your name" autocomplete="given-name">
         </div>
         <div class="form-field">
-          <label class="form-label" for="femail" data-i18n="co-email-lbl">Email</label>
+          <label class="form-label" for="femail">Email</label>
           <input class="form-input" type="email" id="femail" placeholder="email@example.com" autocomplete="email">
         </div>
         <div class="form-field">
-          <label class="form-label" for="fphone" data-i18n="co-phone-lbl">Телефон</label>
+          <label class="form-label" for="fphone">Phone</label>
           <input class="form-input" type="tel" id="fphone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
         </div>
       </form>
 
-      <button class="btn-pay" id="toPay" type="button"><span data-i18n="co-pay-btn">Оплатить</span> <span id="payAmount">—</span></button>
+      <button class="btn-pay" id="toPay" type="button"><span>Pay</span> <span id="payAmount">—</span></button>
 
       <div style="margin-top:14px;text-align:center">
-        <button class="btn-back" id="backToStep1"><span class="arr">←</span> <span data-i18n="co-back2">Назад</span></button>
+        <button class="btn-back" id="backToStep1"><span class="arr">←</span> <span>Back</span></button>
       </div>
     </div>
 
@@ -1124,29 +1106,29 @@ button { font-family: inherit; }
     <div class="checkout-step-content" id="step3">
       <div class="confirm-wrap">
         <div class="confirm-icon" aria-hidden="true">✓</div>
-        <div class="confirm-title" data-i18n="co-conf-title">Всё готово!</div>
-        <div class="confirm-sub" data-i18n="co-conf-sub">Ваш заказ подтверждён</div>
+        <div class="confirm-title">You're all set!</div>
+        <div class="confirm-sub">Your order is confirmed</div>
         <div class="confirm-order-num">№ 241-7834-C</div>
 
-        <div class="qr-placeholder" role="img" aria-label="QR-код билета" data-i18n="co-qr">QR-КОД</div>
+        <div class="qr-placeholder" role="img" aria-label="Ticket QR code">QR CODE</div>
 
         <div class="confirm-details">
-          <strong id="confirmFilm">Дьявол носит Prada 2</strong><br>
+          <strong id="confirmFilm">The Devil Wears Prada 2</strong><br>
           <span id="confirmInfo">—</span><br>
-          <span data-i18n="co-seats-lbl">Места</span>: <strong id="confirmSeats">—</strong>
+          <span>Seats</span>: <strong id="confirmSeats">—</strong>
         </div>
 
-        <div class="bonus-card" aria-label="Информация о бонусных баллах">
-          <div class="bonus-card__title" data-i18n="co-bonus-title">🎬 Бонус</div>
+        <div class="bonus-card" aria-label="Bonus points information">
+          <div class="bonus-card__title">🎬 Bonus</div>
           <div class="bonus-card__text">
-            За этот заказ вы получили <strong>+9 баллов</strong>.<br>
-            Ваш баланс: <strong>48 баллов</strong>. Используйте при следующей покупке.
+            You earned <strong>+9 points</strong> on this order.<br>
+            Your balance: <strong>48 points</strong>. Use them on your next purchase.
           </div>
         </div>
 
         <div class="confirm-actions">
-          <button class="btn btn-ghost" id="downloadTicket" style="height:48px;" data-i18n="co-dl">Скачать билет</button>
-          <button class="btn btn-primary" id="closeAll" style="height:48px;" data-i18n="co-home">Вернуться на главную</button>
+          <button class="btn btn-ghost" id="downloadTicket" style="height:48px;">Download Ticket</button>
+          <button class="btn btn-primary" id="closeAll" style="height:48px;">Back to Home</button>
         </div>
       </div>
     </div>
@@ -1166,10 +1148,10 @@ let seatTicketTypes = {};     // { 'A2': 'adult', ... }
 const PREMIUM_ROWS = [];
 
 const TICKET_TYPES = [
-  { value: 'adult',   labelKey: 'tt-adult',   priceFn: isPrem => isPrem ? 600 : 480 },
-  { value: 'child',   labelKey: 'tt-child',   priceFn: isPrem => isPrem ? 350 : 280 },
-  { value: 'student', labelKey: 'tt-student', priceFn: isPrem => isPrem ? 400 : 320 },
-  { value: 'senior',  labelKey: 'tt-senior',  priceFn: isPrem => isPrem ? 430 : 350 },
+  { value: 'adult',   label: 'Adult',   priceFn: isPrem => isPrem ? 600 : 480 },
+  { value: 'child',   label: 'Child',   priceFn: isPrem => isPrem ? 350 : 280 },
+  { value: 'student', label: 'Student', priceFn: isPrem => isPrem ? 400 : 320 },
+  { value: 'senior',  label: 'Senior',  priceFn: isPrem => isPrem ? 430 : 350 },
 ];
 
 function getSeatPrice(key) {
@@ -1231,112 +1213,6 @@ document.addEventListener('click', e => {
 });
 
 // ============================================================
-// TRANSLATIONS & LANGUAGE TOGGLE
-// ============================================================
-const T = {
-  ru: {
-    'skip':'Перейти к содержимому',
-    'b-text':'Кино в парке — 12 июля, Парк Горького','b-link':'Подробнее →',
-    'n-films':'Фильмы','n-special':'Спецпоказы','n-soon':'Скоро в кино',
-    'n-about':'О кинотеатре','n-cta':'Купить билет','fi-nav':'Название фильма…',
-    'fd-today':'Сегодня','fd-tmrw':'Завтра',
-    'bc-home':'Главная',
-    'fp-genre':'Комедия · Драма','fp-dir':'Реж. Алин Брош МакКенна','fp-trailer':'Трейлер',
-    'fp-desc':'Андреа Сакс возвращается в мир моды — теперь уже по другую сторону баррикад. Спустя десять лет она — главный редактор собственного медиапроекта, бросающего вызов Runway. Миранда Пристли по-прежнему держит индустрию железной рукой. Новое противостояние. Старая злость. И неожиданный союз, который никто не ожидал.',
-    'fp-cast-lbl':'В ролях','fp-lang-lbl':'Язык','fp-country-lbl':'Страна','fp-dur-lbl':'Длительность',
-    'fp-lang-val':'English / Рус. субтитры','fp-country-val':'США','fp-dur-val':'2 ч 15 мин',
-    'fp-sessions':'Сеансы',
-    'fp-hall1':'Зал 1','fp-hall1-em':'— IMAX','fp-hall2':'Зал 2','fp-hall2-em':'— Стандарт',
-    'fp-buy':'Купить билет',
-    'sm-screen':'— ЭКРАН —',
-    'sm-avail':'Свободно','sm-sel':'Выбрано','sm-occ':'Занято',
-    'sm-empty':'Выберите места на схеме выше',
-    'sm-seat':'Место','sm-total':'Итого','sm-cont':'Продолжить',
-    'ss-row':'Ряд','ss-free':'свободно','ss-sel':'выбрано','ss-occ':'занято',
-    'co-step1':'Заказ','co-step2':'Оплата','co-step3':'Готово',
-    'co-title':'Ваш заказ','co-seats':'Места','co-total':'Итого',
-    'co-back':'Изменить места','co-next':'Далее',
-    'co-pay-title':'Оплата',
-    'co-pay-sub':'Выберите способ оплаты и введите контактные данные',
-    'co-sber-sub':'Быстрая оплата','co-sbp-name':'СБП','co-sbp-sub':'Быстрые переводы',
-    'co-card-name':'Банковская карта','co-card-sub':'Visa / Mastercard / МИР',
-    'co-name-lbl':'Имя','co-email-lbl':'Email','co-phone-lbl':'Телефон',
-    'co-name-ph':'Ваше имя','co-email-ph':'email@example.com','co-phone-ph':'+7 (___) ___-__-__',
-    'co-pay-btn':'Оплатить','co-back2':'Назад',
-    'co-conf-title':'Всё готово!','co-conf-sub':'Ваш заказ подтверждён','co-qr':'QR-КОД',
-    'co-bonus-title':'🎬 Бонус','co-dl':'Скачать билет','co-home':'Вернуться на главную',
-    'co-seats-lbl':'Места',
-    'tt-adult':'Взрослый','tt-child':'Детский','tt-student':'Студенческий','tt-senior':'Льготный',
-    'f-films':'Фильмы','f-now':'Сейчас в кино','f-soon':'Скоро',
-    'f-spec':'Спецпоказы','f-arch':'Архив','f-info':'Информация',
-    'f-about':'О кинотеатре','f-ads':'Реклама','f-rent':'Аренда залов',
-    'f-press':'Пресса','f-cont':'Контакты','f-soc':'Соцсети',
-    'f-priv':'Политика конфиденциальности','f-terms':'Пользовательское соглашение'
-  },
-  en: {
-    'skip':'Skip to content',
-    'b-text':'Cinema in the Park — July 12, Gorky Park','b-link':'Learn more →',
-    'n-films':'Films','n-special':'Special Screenings','n-soon':'Coming Soon',
-    'n-about':'About','n-cta':'Buy Ticket','fi-nav':'Film title…',
-    'fd-today':'Today','fd-tmrw':'Tomorrow',
-    'bc-home':'Home',
-    'fp-genre':'Comedy · Drama','fp-dir':'Dir. Aline Brosh McKenna','fp-trailer':'Trailer',
-    'fp-desc':'Andrea Sachs returns to the fashion world — now on the other side. Ten years later, she is editor-in-chief of her own media project challenging Runway. Miranda Priestly still rules the industry with an iron fist. A new confrontation. The same old fury. And an unexpected alliance no one saw coming.',
-    'fp-cast-lbl':'Cast','fp-lang-lbl':'Language','fp-country-lbl':'Country','fp-dur-lbl':'Duration',
-    'fp-lang-val':'English / Eng. subtitles','fp-country-val':'USA','fp-dur-val':'2 h 15 min',
-    'fp-sessions':'Sessions',
-    'fp-hall1':'Hall 1','fp-hall1-em':'— IMAX','fp-hall2':'Hall 2','fp-hall2-em':'— Standard',
-    'fp-buy':'Buy Ticket',
-    'sm-screen':'— SCREEN —',
-    'sm-avail':'Available','sm-sel':'Selected','sm-occ':'Occupied',
-    'sm-empty':'Select seats on the map above',
-    'sm-seat':'Seat','sm-total':'Total','sm-cont':'Continue',
-    'ss-row':'Row','ss-free':'available','ss-sel':'selected','ss-occ':'occupied',
-    'co-step1':'Order','co-step2':'Payment','co-step3':'Done',
-    'co-title':'Your Order','co-seats':'Seats','co-total':'Total',
-    'co-back':'Change seats','co-next':'Continue',
-    'co-pay-title':'Payment',
-    'co-pay-sub':'Select a payment method and enter your contact details',
-    'co-sber-sub':'Fast payment','co-sbp-name':'SBP','co-sbp-sub':'Instant transfers',
-    'co-card-name':'Bank card','co-card-sub':'Visa / Mastercard / MIR',
-    'co-name-lbl':'Name','co-email-lbl':'Email','co-phone-lbl':'Phone',
-    'co-name-ph':'Your name','co-email-ph':'email@example.com','co-phone-ph':'+7 (___) ___-__-__',
-    'co-pay-btn':'Pay','co-back2':'Back',
-    'co-conf-title':'You\'re all set!','co-conf-sub':'Your order is confirmed','co-qr':'QR CODE',
-    'co-bonus-title':'🎬 Bonus','co-dl':'Download Ticket','co-home':'Back to Home',
-    'co-seats-lbl':'Seats',
-    'tt-adult':'Adult','tt-child':'Child','tt-student':'Student','tt-senior':'Senior',
-    'f-films':'Films','f-now':'Now Showing','f-soon':'Coming Soon',
-    'f-spec':'Special Screenings','f-arch':'Archive','f-info':'Information',
-    'f-about':'About','f-ads':'Advertising','f-rent':'Room Rental',
-    'f-press':'Press','f-cont':'Contacts','f-soc':'Social',
-    'f-priv':'Privacy Policy','f-terms':'Terms of Use'
-  }
-};
-let currentLang = 'ru';
-
-function applyLang(lang) {
-  currentLang = lang;
-  document.documentElement.lang = lang;
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const v = T[lang][el.dataset.i18n];
-    if (v !== undefined) el.textContent = v;
-  });
-  document.getElementById('searchInput').placeholder = T[lang]['fi-nav'];
-  document.getElementById('fname').placeholder        = T[lang]['co-name-ph'];
-  document.getElementById('femail').placeholder       = T[lang]['co-email-ph'];
-  document.getElementById('fphone').placeholder       = T[lang]['co-phone-ph'];
-  if (window.calendarRender) window.calendarRender();
-  if (document.getElementById('seatOverlay').classList.contains('open')) updateSeatSummary();
-  document.getElementById('lRu').classList.toggle('active', lang === 'ru');
-  document.getElementById('lEn').classList.toggle('active', lang === 'en');
-  document.getElementById('lRu').setAttribute('aria-pressed', lang === 'ru');
-  document.getElementById('lEn').setAttribute('aria-pressed', lang === 'en');
-}
-document.getElementById('lRu').addEventListener('click', () => applyLang('ru'));
-document.getElementById('lEn').addEventListener('click', () => applyLang('en'));
-
-// ============================================================
 // CALENDAR STRIP — 7-day sliding window (mirrors homepage)
 // ============================================================
 (function initCalendar() {
@@ -1355,7 +1231,6 @@ document.getElementById('lEn').addEventListener('click', () => applyLang('en'));
   );
 
   function render() {
-    const locale = currentLang === 'ru' ? 'ru-RU' : 'en-US';
     strip.innerHTML = '';
     const end = Math.min(startIdx + WINDOW, TOTAL);
     for (let i = startIdx; i < end; i++) {
@@ -1365,13 +1240,13 @@ document.getElementById('lEn').addEventListener('click', () => applyLang('en'));
         (i === selectedIdx ? ' on' : '') +
         (i === 0 ? ' cal-day--today' : '');
       btn.setAttribute('aria-pressed', i === selectedIdx ? 'true' : 'false');
-      btn.setAttribute('aria-label', d.toLocaleDateString(locale, { day:'numeric', month:'long', weekday:'long' }));
+      btn.setAttribute('aria-label', d.toLocaleDateString('en-US', { day:'numeric', month:'long', weekday:'long' }));
 
-      const rawLabel = i === 0 ? T[currentLang]['fd-today'] :
-                       i === 1 ? T[currentLang]['fd-tmrw']  :
-                       d.toLocaleDateString(locale, { weekday: 'short' }).replace('.', '');
+      const rawLabel = i === 0 ? 'Today' :
+                       i === 1 ? 'Tomorrow'  :
+                       d.toLocaleDateString('en-US', { weekday: 'short' }).replace('.', '');
       const label = rawLabel.charAt(0).toUpperCase() + rawLabel.slice(1);
-      const month = d.toLocaleDateString(locale, { month: 'short' }).replace('.', '');
+      const month = d.toLocaleDateString('en-US', { month: 'short' }).replace('.', '');
       btn.innerHTML =
         `<span class="cal-day__label">${label}</span>` +
         `<span class="cal-day__num">${d.getDate()}</span>` +
@@ -1380,8 +1255,8 @@ document.getElementById('lEn').addEventListener('click', () => applyLang('en'));
       btn.addEventListener('click', () => {
         selectedIdx = i;
         selectedDate = {
-          label:      d.toLocaleDateString(locale, { day:'numeric', month:'long' }),
-          shortLabel: d.toLocaleDateString(locale, { day:'numeric', month:'long' })
+          label:      d.toLocaleDateString('en-US', { day:'numeric', month:'long' }),
+          shortLabel: d.toLocaleDateString('en-US', { day:'numeric', month:'long' })
         };
         selectedSession = null;
         document.querySelectorAll('.time-pill').forEach(p => {
@@ -1401,8 +1276,8 @@ document.getElementById('lEn').addEventListener('click', () => applyLang('en'));
 
   // init selectedDate
   selectedDate = {
-    label:      dates[0].toLocaleDateString('ru-RU', { day:'numeric', month:'long' }),
-    shortLabel: dates[0].toLocaleDateString('ru-RU', { day:'numeric', month:'long' })
+    label:      dates[0].toLocaleDateString('en-US', { day:'numeric', month:'long' }),
+    shortLabel: dates[0].toLocaleDateString('en-US', { day:'numeric', month:'long' })
   };
 
   prevBtn.addEventListener('click', () => { if (startIdx > 0) { startIdx--; render(); } });
@@ -1470,7 +1345,7 @@ function buildSeatGrid() {
     const rowEl = document.createElement('div');
     rowEl.className = 'seat-row';
     rowEl.setAttribute('role','row');
-    rowEl.setAttribute('aria-label', T[currentLang]['ss-row'] + ' ' + row);
+    rowEl.setAttribute('aria-label', 'Row ' + row);
 
     const lbl = document.createElement('span');
     lbl.className = 'seat-row__label';
@@ -1496,11 +1371,11 @@ function buildSeatGrid() {
 
       if (isOcc) {
         btn.setAttribute('aria-disabled','true');
-        btn.setAttribute('aria-label', `${T[currentLang]['ss-row']} ${row}, ${T[currentLang]['sm-seat']} ${c}, ${T[currentLang]['ss-occ']}`);
+        btn.setAttribute('aria-label', `Row ${row}, Seat ${c}, occupied`);
         btn.setAttribute('tabindex','-1');
       } else {
         btn.setAttribute('aria-selected', isSel ? 'true' : 'false');
-        btn.setAttribute('aria-label', `${T[currentLang]['ss-row']} ${row}, ${T[currentLang]['sm-seat']} ${c}, ${isSel ? T[currentLang]['ss-sel'] : T[currentLang]['ss-free']}`);
+        btn.setAttribute('aria-label', `Row ${row}, Seat ${c}, ${isSel ? 'selected' : 'available'}`);
         btn.addEventListener('click', () => toggleSeat(key, btn, isPrem));
         btn.addEventListener('keydown', e => handleSeatKey(e, rowEl, row, c));
       }
@@ -1521,13 +1396,13 @@ function toggleSeat(key, btn, isPrem) {
     if (!seatTicketTypes[key]) seatTicketTypes[key] = 'adult';
     btn.classList.add('seat--selected');
     btn.setAttribute('aria-selected','true');
-    btn.setAttribute('aria-label', btn.getAttribute('aria-label').replace(T[currentLang]['ss-free'], T[currentLang]['ss-sel']));
+    btn.setAttribute('aria-label', btn.getAttribute('aria-label').replace('available', 'selected'));
   } else {
     selectedSeats.splice(idx, 1);
     delete seatTicketTypes[key];
     btn.classList.remove('seat--selected');
     btn.setAttribute('aria-selected','false');
-    btn.setAttribute('aria-label', btn.getAttribute('aria-label').replace(T[currentLang]['ss-sel'], T[currentLang]['ss-free']));
+    btn.setAttribute('aria-label', btn.getAttribute('aria-label').replace('selected', 'available'));
   }
   updateSeatSummary();
 }
@@ -1557,7 +1432,7 @@ function updateSeatSummary() {
   const totalEl    = document.getElementById('summaryTotal');
 
   if (selectedSeats.length === 0) {
-    body.innerHTML = `<div class="seat-summary__empty">${T[currentLang]['sm-empty']}</div>`;
+    body.innerHTML = `<div class="seat-summary__empty">Select seats on the map above</div>`;
     totalEl.textContent = '—';
     cont.disabled = true;
     return;
@@ -1575,14 +1450,14 @@ function updateSeatSummary() {
     const row = document.createElement('div');
     row.className = 'seat-summary__seat-row';
     row.innerHTML = `
-      <span class="seat-summary__seat-label">Место ${label}</span>
+      <span class="seat-summary__seat-label">Seat ${label}</span>
       <div class="seat-summary__seat-controls">
-        <select class="seat-ticket-select" data-seat="${key}" aria-label="Тип билета для места ${label}">
+        <select class="seat-ticket-select" data-seat="${key}" aria-label="Ticket type for seat ${label}">
           ${TICKET_TYPES.map(t =>
-            `<option value="${t.value}"${seatTicketTypes[key] === t.value ? ' selected' : ''}>${T[currentLang][t.labelKey]}</option>`
+            `<option value="${t.value}"${seatTicketTypes[key] === t.value ? ' selected' : ''}>${t.label}</option>`
           ).join('')}
         </select>
-        <span class="seat-summary__seat-price" id="price-${key}">${price} ₽</span>
+        <span class="seat-summary__seat-price" id="price-${key}">${price} ₽</span>
       </div>`;
 
     row.querySelector('select').addEventListener('change', e => {
@@ -1593,7 +1468,7 @@ function updateSeatSummary() {
     body.appendChild(row);
   });
 
-  totalEl.textContent = total + ' ₽';
+  totalEl.textContent = total + ' ₽';
   cont.disabled = false;
 }
 
@@ -1684,7 +1559,7 @@ function updateCheckoutTotal() {
     const row = document.createElement('div');
     row.className = 'order-row';
     row.innerHTML =
-      `<span class="order-row__label">${T[currentLang]['sm-seat']} ${label} (${T[currentLang][tt.labelKey]})</span>` +
+      `<span class="order-row__label">Seat ${label} (${tt.label})</span>` +
       `<span>${price} ₽</span>`;
     container.appendChild(row);
   });
@@ -1719,7 +1594,7 @@ document.getElementById('closeAll').addEventListener('click', () => {
 });
 
 document.getElementById('downloadTicket').addEventListener('click', () => {
-  alert('Билет будет отправлен на указанный email.');
+  alert('The ticket will be sent to the email provided.');
 });
 
 checkoutOverlay.addEventListener('click', e => {
