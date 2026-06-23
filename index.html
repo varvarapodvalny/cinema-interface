@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cinerix — Кино, которое стоит увидеть</title>
+<title>Cinerix — Movies worth watching</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=optional" rel="stylesheet">
 <style>
 /* ============================================================
    RESET & TOKENS
@@ -157,20 +157,6 @@ button { font-family: inherit; }
 .nav__search-input:focus { border-color: var(--cyan); outline: none; }
 .nav__search.open .nav__search-input { width: 248px; opacity: 1; pointer-events: all; }
 .nav__search.open .nav__search-btn  { opacity: 0; pointer-events: none; }
-
-.nav__lang {
-  display: flex; background: rgba(255,255,255,.07);
-  border-radius: 100px; padding: 3px; gap: 2px;
-}
-.lang-btn {
-  background: none; border: none; cursor: pointer;
-  font-family: var(--font-d); font-size: 10px; font-weight: 700;
-  letter-spacing: .06em; color: var(--grey);
-  padding: 5px 11px; border-radius: 100px;
-  transition: background .2s, color .2s;
-}
-.lang-btn.active { background: var(--cyan); color: var(--black); }
-.lang-btn:hover:not(.active) { color: var(--cream); }
 
 /* ============================================================
    HERO CAROUSEL
@@ -422,6 +408,9 @@ button { font-family: inherit; }
   font-family: var(--font-d); font-size: 11px; font-weight: 700;
   padding: 9px 18px; border-radius: 100px; letter-spacing: .03em;
 }
+.card__cta--soldout {
+  background: var(--grey); color: rgba(0,0,0,.55);
+}
 .card__info   { padding: 11px 2px 0; }
 .card__title  {
   font-family: var(--font-d); font-size: 13px; line-height: 19px; font-weight: 600;
@@ -506,15 +495,15 @@ button { font-family: inherit; }
 </head>
 <body>
 
-<a href="#main" class="skip-link" data-i18n="skip">Перейти к содержимому</a>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <!-- BANNER -->
-<div class="banner" id="banner" role="region" aria-label="Анонс события">
+<div class="banner" id="banner" role="region" aria-label="Event announcement">
   <div class="banner__inner">
     <span class="banner__star" aria-hidden="true">★</span>
-    <span class="banner__text" data-i18n="b-text">Кино в парке — 12 июля, Парк Горького</span>
-    <a href="special.html" class="banner__link" data-i18n="b-link">Подробнее&nbsp;→</a>
-    <button class="banner__close" id="bannerClose" aria-label="Закрыть объявление">
+    <span class="banner__text">Cinema in the Park — July 12, Gorky Park</span>
+    <a href="special.html" class="banner__link">Learn more&nbsp;→</a>
+    <button class="banner__close" id="bannerClose" aria-label="Close announcement">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
         <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
@@ -524,33 +513,29 @@ button { font-family: inherit; }
 
 <!-- NAV -->
 <header class="nav-wrap" id="navWrap">
-  <nav class="nav" aria-label="Основная навигация">
-    <a href="index.html" class="nav__logo" aria-label="Cinerix — на главную">Cinerix<em>.</em></a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html" class="nav__logo" aria-label="Cinerix — go to homepage">Cinerix<em>.</em></a>
     <div class="nav__links">
-      <a href="films.html"   class="nav__link" data-i18n="n-films">Фильмы</a>
-      <a href="special.html" class="nav__link" style="position:relative" data-i18n="n-special">
-        Спецпоказы<span class="nav__badge" aria-label="Есть новые события"></span>
+      <a href="films.html"   class="nav__link">Films</a>
+      <a href="special.html" class="nav__link" style="position:relative">
+        Special Screenings<span class="nav__badge" aria-label="New events available"></span>
       </a>
-      <a href="soon.html"    class="nav__link" data-i18n="n-soon">Скоро в кино</a>
-      <a href="about.html"   class="nav__link" data-i18n="n-about">О кинотеатре</a>
+      <a href="soon.html"    class="nav__link">Coming Soon</a>
+      <a href="about.html"   class="nav__link">About</a>
     </div>
     <div class="nav__right">
       <div class="nav__search" id="navSearch">
         <button class="nav__search-btn" id="searchBtn"
-                aria-label="Поиск фильмов" aria-expanded="false" aria-controls="searchInput">
+                aria-label="Search films" aria-expanded="false" aria-controls="searchInput">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             <circle cx="7.5" cy="7.5" r="5" stroke="currentColor" stroke-width="1.5"/>
             <path d="M11.5 11.5L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </button>
         <input id="searchInput" type="search" class="nav__search-input"
-               placeholder="Название фильма…" aria-label="Введите название фильма">
+               placeholder="Film title…" aria-label="Enter film title">
       </div>
-      <div class="nav__lang" role="group" aria-label="Выбрать язык">
-        <button class="lang-btn active" id="lRu" aria-pressed="true">RU</button>
-        <button class="lang-btn"        id="lEn" aria-pressed="false">EN</button>
-      </div>
-      <a href="films.html" class="btn btn-primary" data-i18n="n-cta">Купить билет</a>
+      <a href="films.html" class="btn btn-primary">Buy Ticket</a>
     </div>
   </nav>
 </header>
@@ -558,95 +543,95 @@ button { font-family: inherit; }
 <main id="main">
 
   <!-- HERO -->
-  <section class="hero" aria-label="Главный баннер" aria-roledescription="carousel">
+  <section class="hero" aria-label="Main banner" aria-roledescription="carousel">
     <div class="hero__track" id="heroTrack">
 
-      <div class="hero__slide slide-1" role="group" aria-roledescription="slide" aria-label="1 из 3">
+      <div class="hero__slide slide-1" role="group" aria-roledescription="slide" aria-label="1 of 3">
         <div class="hero__bg" style="background-image: url('Project-Hail-Mary-Ryan-Gosling-Sandra-Huller.webp'); background-position: center center;"></div>
         <div class="hero__overlay"></div>
         <div class="hero__content">
           <div class="hero__inner">
             <div class="hero__tags">
-              <span class="hero__tag">Фантастика · Триллер</span>
+              <span class="hero__tag">Sci-Fi · Thriller</span>
               <span class="hero__tag">16+</span>
               <span class="hero__tag">2026</span>
             </div>
-            <h1 class="hero__title hero__title--md">Проект<br>«Конец света»</h1>
-            <p class="hero__sub">Райан Гослинг отправляется в космос,<br>чтобы спасти Землю от гибели.</p>
+            <h1 class="hero__title hero__title--md">Project<br>Hail Mary</h1>
+            <p class="hero__sub">Ryan Gosling heads into space<br>to save Earth from extinction.</p>
             <div class="hero__actions">
-              <a href="film.html" class="btn btn-ghost" data-i18n="h-more">Подробнее</a>
-              <a href="film.html" class="btn btn-primary" data-i18n="h-buy">Купить билет</a>
+              <a href="film.html" class="btn btn-ghost">Details</a>
+              <a href="film.html" class="btn btn-primary">Buy Ticket</a>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="hero__slide slide-2" role="group" aria-roledescription="slide" aria-label="2 из 3">
+      <div class="hero__slide slide-2" role="group" aria-roledescription="slide" aria-label="2 of 3">
         <div class="hero__bg" style="background-image: url('media.avif'); background-position: center center;"></div>
         <div class="hero__overlay"></div>
         <div class="hero__content">
           <div class="hero__inner">
             <div class="hero__tags">
-              <span class="hero__tag">Комедия · Драма</span>
+              <span class="hero__tag">Comedy · Drama</span>
               <span class="hero__tag">16+</span>
               <span class="hero__tag">2026</span>
             </div>
-            <h1 class="hero__title hero__title--md">Дьявол носит<br>Prada 2</h1>
-            <p class="hero__sub">Мир моды. Новые правила.<br>Старая злость.</p>
+            <h1 class="hero__title hero__title--md">The Devil Wears<br>Prada 2</h1>
+            <p class="hero__sub">The world of fashion. New rules.<br>Old fury.</p>
             <div class="hero__actions">
-              <a href="film.html" class="btn btn-ghost" data-i18n="h-more">Подробнее</a>
-              <a href="film.html" class="btn btn-primary" data-i18n="h-buy">Купить билет</a>
+              <a href="film.html" class="btn btn-ghost">Details</a>
+              <a href="film.html" class="btn btn-primary">Buy Ticket</a>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="hero__slide slide-3" role="group" aria-roledescription="slide" aria-label="3 из 3">
+      <div class="hero__slide slide-3" role="group" aria-roledescription="slide" aria-label="3 of 3">
         <div class="hero__bg" style="background-image: url('Awareness banner.png'); background-position: center center;"></div><div class="hero__overlay"></div>
         <div class="hero__content">
           <div class="hero__inner">
             <div class="hero__tags">
-              <span class="hero__tag hero__tag--accent">★ Спецпоказ</span>
-              <span class="hero__tag">12 июля</span>
+              <span class="hero__tag hero__tag--accent">★ Special Screening</span>
+              <span class="hero__tag">July 12</span>
             </div>
-            <h1 class="hero__title">Кино<br>в парке</h1>
-            <p class="hero__sub">Парк Горького · Ретроспектива Тарковского · Бесплатно</p>
+            <h1 class="hero__title">Cinema<br>in the Park</h1>
+            <p class="hero__sub">Gorky Park · Tarkovsky Retrospective · Free entry</p>
             <div class="hero__actions">
-              <a href="special.html" class="btn btn-primary" data-i18n="s3-cta">Узнать больше</a>
+              <a href="special.html" class="btn btn-primary">Learn More</a>
             </div>
           </div>
         </div>
       </div>
 
     </div>
-    <button class="hero__arrow hero__arrow--prev" id="heroPrev" aria-label="Предыдущий слайд">
+    <button class="hero__arrow hero__arrow--prev" id="heroPrev" aria-label="Previous slide">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
         <path d="M11 3L5 9L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-    <button class="hero__arrow hero__arrow--next" id="heroNext" aria-label="Следующий слайд">
+    <button class="hero__arrow hero__arrow--next" id="heroNext" aria-label="Next slide">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
         <path d="M7 3L13 9L7 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-    <div class="hero__dots" role="group" aria-label="Навигация по слайдам">
-      <button class="hero__dot on" aria-label="Слайд 1" aria-current="true"></button>
-      <button class="hero__dot"    aria-label="Слайд 2"></button>
-      <button class="hero__dot"    aria-label="Слайд 3"></button>
+    <div class="hero__dots" role="group" aria-label="Slide navigation">
+      <button class="hero__dot on" aria-label="Slide 1" aria-current="true"></button>
+      <button class="hero__dot"    aria-label="Slide 2"></button>
+      <button class="hero__dot"    aria-label="Slide 3"></button>
     </div>
   </section>
 
   <!-- CALENDAR STRIP -->
-  <section class="cal-outer" aria-label="Расписание по датам">
-    <button class="cal-arrow cal-arrow--prev" id="calPrev" aria-label="Предыдущие даты">
+  <section class="cal-outer" aria-label="Schedule by date">
+    <button class="cal-arrow cal-arrow--prev" id="calPrev" aria-label="Previous dates">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
         <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
     <div class="cal-strip">
-      <div class="cal-strip__inner" id="calStrip" role="group" aria-label="Выберите дату"></div>
+      <div class="cal-strip__inner" id="calStrip" role="group" aria-label="Select a date"></div>
     </div>
-    <button class="cal-arrow cal-arrow--next" id="calNext" aria-label="Следующие даты">
+    <button class="cal-arrow cal-arrow--next" id="calNext" aria-label="Next dates">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
         <path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -654,117 +639,119 @@ button { font-family: inherit; }
   </section>
 
   <!-- FILTER BAR -->
-  <section class="filter-bar" aria-label="Поиск по фильмам">
+  <section class="filter-bar" aria-label="Search films">
     <div class="filter-bar__inner">
       <input type="search" class="filter-input" id="filterSearch"
-             placeholder="Название фильма или жанр…" aria-label="Поиск фильма по названию или жанру">
-      <select class="filter-genre" aria-label="Фильтр по жанру">
-        <option value="" data-i18n="fg-all">Все жанры</option>
-        <option data-i18n="g-drama">Драма</option>
-        <option data-i18n="g-comedy">Комедия</option>
-        <option data-i18n="g-thriller">Триллер</option>
-        <option data-i18n="g-horror">Ужасы</option>
-        <option data-i18n="g-sci">Фантастика</option>
-        <option data-i18n="g-bio">Биография</option>
-        <option data-i18n="g-doc">Документальное</option>
-        <option data-i18n="g-anim">Анимация</option>
-        <option data-i18n="g-family">Семейное</option>
+             placeholder="Film title or genre…" aria-label="Search films by title or genre">
+      <select class="filter-genre" aria-label="Filter by genre">
+        <option value="">All genres</option>
+        <option>Drama</option>
+        <option>Comedy</option>
+        <option>Thriller</option>
+        <option>Horror</option>
+        <option>Sci-Fi</option>
+        <option>Biography</option>
+        <option>Documentary</option>
+        <option>Animation</option>
+        <option>Family</option>
       </select>
-      <button class="btn btn-primary" data-i18n="fb-find">Найти</button>
+      <button class="btn btn-primary">Search</button>
     </div>
   </section>
 
   <!-- CATALOGUE -->
-  <section class="catalogue" aria-label="Афиша">
+  <section class="catalogue" aria-label="Listings">
 
-    <!-- Новинки -->
+    <!-- New Releases -->
     <div class="cat-section">
       <div class="cat-head">
-        <h2 class="cat-title" data-i18n="c-new">Новинки</h2>
-        <a href="films.html" class="cat-all" data-i18n="c-all">Смотреть все</a>
+        <h2 class="cat-title">New Releases</h2>
+        <a href="films.html" class="cat-all">See all</a>
       </div>
       <div class="cat-row-wrap">
-        <div class="cat-row" role="list" aria-label="Новинки">
+        <div class="cat-row" role="list" aria-label="New Releases">
 
-          <a href="film.html" class="card" role="listitem" aria-label="Дьявол носит Prada 2 — комедия, 16+">
-            <div class="card__poster">
-              <img src="https://static.kinoafisha.info/k/movie_posters/canvas/220x315/upload/movie_posters/0/3/2/8382230/637252830546.jpg"
-                   alt="Дьявол носит Prada 2 — постер" class="card__img" loading="lazy">
+          <a href="film.html" class="card" role="listitem" aria-label="The Devil Wears Prada 2 — comedy, 16+">
+            <div class="card__poster p-com">
+              <img src="devil-wears-prada-2-poster.jpg"
+                   alt="The Devil Wears Prada 2 — poster" class="card__img" loading="lazy"
+                   onerror="this.style.opacity='0'">
               <span class="card__age card__age--amber">16+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Дьявол носит Prada 2</div>
-              <div class="card__meta">Комедия · Драма · 2026</div>
+              <div class="card__title">The Devil Wears Prada 2</div>
+              <div class="card__meta">Comedy · Drama · 2026</div>
             </div>
           </a>
 
-          <a href="film.html" class="card" role="listitem" aria-label="Проект Конец света — фантастика, 16+">
-            <div class="card__poster">
-              <img src="https://static.kinoafisha.info/k/movie_posters/canvas/220x315/upload/movie_posters/6/1/1/8377116/722072677176.jpg"
-                   alt="Проект «Конец света» — постер" class="card__img" loading="lazy">
+          <a href="film.html" class="card" role="listitem" aria-label="Project Hail Mary — sci-fi, 16+">
+            <div class="card__poster p-sci">
+              <img src="hailmary.jpg"
+                   alt="Project Hail Mary — poster" class="card__img" loading="lazy"
+                   onerror="this.style.opacity='0'">
               <span class="card__age card__age--amber">16+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Проект «Конец света»</div>
-              <div class="card__meta">Фантастика · Триллер · 2026</div>
+              <div class="card__title">Project Hail Mary</div>
+              <div class="card__meta">Sci-Fi · Thriller · 2026</div>
             </div>
           </a>
 
-          <a href="film.html" class="card" role="listitem" aria-label="Грязные Деньги — экшн, 18+">
+          <a href="film.html" class="card" role="listitem" aria-label="Dirty Money — action, 18+">
             <div class="card__poster p-thr">
               <img src="https://image.tmdb.org/t/p/w500/sydZQGy6556cDEaQNzJxqvf24q1.jpg"
-                   alt="Грязные Деньги — постер" class="card__img" loading="lazy"
+                   alt="Dirty Money — poster" class="card__img" loading="lazy"
                    onerror="this.style.opacity='0'">
               <span class="card__age">18+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Грязные Деньги</div>
-              <div class="card__meta">Экшн · Триллер · 2026</div>
+              <div class="card__title">Dirty Money</div>
+              <div class="card__meta">Action · Thriller · 2026</div>
             </div>
           </a>
 
-          <a href="film.html" class="card" role="listitem" aria-label="Обсессия — ужасы, 18+">
+          <a href="film.html" class="card" role="listitem" aria-label="Obsession — horror, 18+">
             <div class="card__poster p-dra">
               <img src="https://image.tmdb.org/t/p/w500/kYAKhRyRcoijGoUUETVTQm8xqzj.jpg"
-                   alt="Обсессия — постер" class="card__img" loading="lazy"
+                   alt="Obsession — poster" class="card__img" loading="lazy"
                    onerror="this.style.opacity='0'">
               <span class="card__age">18+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Обсессия</div>
-              <div class="card__meta">Ужасы · 2026</div>
+              <div class="card__title">Obsession</div>
+              <div class="card__meta">Horror · 2026</div>
             </div>
           </a>
 
-          <a href="film.html" class="card" role="listitem" aria-label="Мать Мария — драма, 16+">
+          <a href="film.html" class="card" role="listitem" aria-label="Mother Maria — drama, 16+">
             <div class="card__poster p-com">
               <img src="https://image.tmdb.org/t/p/w500/kZJZHSDglotEjJezXQyTBicKyHY.jpg"
-                   alt="Мать Мария — постер" class="card__img" loading="lazy"
+                   alt="Mother Maria — poster" class="card__img" loading="lazy"
                    onerror="this.style.opacity='0'">
               <span class="card__age card__age--amber">16+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Мать Мария</div>
-              <div class="card__meta">Драма · Музыка · 2026</div>
+              <div class="card__title">Mother Maria</div>
+              <div class="card__meta">Drama · Music · 2026</div>
             </div>
           </a>
 
-          <a href="film.html" class="card" role="listitem" aria-label="Вот это драма! — комедия, 16+">
+          <a href="film.html" class="card" role="listitem" aria-label="Such Drama! — comedy, 16+">
             <div class="card__poster p-sci">
               <img src="https://image.tmdb.org/t/p/w500/yPV87cvDabRMTZs6NIbZLOufBLR.jpg"
-                   alt="Вот это драма! — постер" class="card__img" loading="lazy"
+                   alt="Such Drama! — poster" class="card__img" loading="lazy"
                    onerror="this.style.opacity='0'">
               <span class="card__age card__age--amber">16+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Вот это драма!</div>
-              <div class="card__meta">Комедия · Драма · 2026</div>
+              <div class="card__title">Such Drama!</div>
+              <div class="card__meta">Comedy · Drama · 2026</div>
             </div>
           </a>
 
@@ -772,96 +759,96 @@ button { font-family: inherit; }
       </div>
     </div>
 
-    <!-- Уже в кино -->
+    <!-- In Cinemas -->
     <div class="cat-section">
       <div class="cat-head">
-        <h2 class="cat-title" data-i18n="c-smart">Уже в кино</h2>
-        <a href="films.html?filter=now" class="cat-all" data-i18n="c-all">Смотреть все</a>
+        <h2 class="cat-title">In Cinemas</h2>
+        <a href="films.html?filter=now" class="cat-all">See all</a>
       </div>
       <div class="cat-row-wrap">
-        <div class="cat-row" role="list" aria-label="Уже в кино">
+        <div class="cat-row" role="list" aria-label="In Cinemas">
 
-          <a href="film.html" class="card" role="listitem" aria-label="Супер Марио: Галактическое кино — анимация, 6+">
+          <a href="film.html" class="card" role="listitem" aria-label="Super Mario Galactic Movie — animation, 6+">
             <div class="card__poster p-sci">
               <img src="https://image.tmdb.org/t/p/w500/ekF2RiziyzLeXsTvEvhhRjEc7Eo.jpg"
-                   alt="Супер Марио: Галактическое кино — постер" class="card__img" loading="lazy"
+                   alt="Super Mario Galactic Movie — poster" class="card__img" loading="lazy"
                    onerror="this.style.opacity='0'">
               <span class="card__age card__age--green">6+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Супер Марио: Галактическое кино</div>
-              <div class="card__meta">Анимация · 2026</div>
+              <div class="card__title">Super Mario Galactic Movie</div>
+              <div class="card__meta">Animation · 2026</div>
             </div>
           </a>
 
-          <a href="film.html" class="card" role="listitem" aria-label="Прыгуны — анимация, 6+">
+          <a href="film.html" class="card" role="listitem" aria-label="Jumpers — animation, 6+">
             <div class="card__poster p-com">
               <img src="https://image.tmdb.org/t/p/w500/nzvdu4O1xCzg2DQTjoaPgyanFUI.jpg"
-                   alt="Прыгуны — постер" class="card__img" loading="lazy"
+                   alt="Jumpers — poster" class="card__img" loading="lazy"
                    onerror="this.style.opacity='0'">
               <span class="card__age card__age--green">6+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Прыгуны</div>
-              <div class="card__meta">Анимация · 2026</div>
+              <div class="card__title">Jumpers</div>
+              <div class="card__meta">Animation · 2026</div>
             </div>
           </a>
 
-          <a href="film.html" class="card" role="listitem" aria-label="Грозовой перевал — мелодрама, 16+">
+          <a href="film.html" class="card" role="listitem" aria-label="Wuthering Heights — melodrama, 16+">
             <div class="card__poster p-dra">
               <img src="https://image.tmdb.org/t/p/w500/rTkrHVlD2gSnUPMolmy5VnjFiZj.jpg"
-                   alt="Грозовой перевал — постер" class="card__img" loading="lazy"
+                   alt="Wuthering Heights — poster" class="card__img" loading="lazy"
                    onerror="this.style.opacity='0'">
               <span class="card__age card__age--amber">16+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Грозовой перевал</div>
-              <div class="card__meta">Мелодрама · Драма · 2026</div>
+              <div class="card__title">Wuthering Heights</div>
+              <div class="card__meta">Melodrama · Drama · 2026</div>
             </div>
           </a>
 
-          <a href="film.html" class="card" role="listitem" aria-label="Как совершить убийство — комедия, 18+">
+          <a href="film.html" class="card" role="listitem" aria-label="How to Commit Murder — comedy, 18+">
             <div class="card__poster p-bio">
               <img src="https://image.tmdb.org/t/p/w500/vxMeKC7o5Gi8IHMi6lUgsdprTqv.jpg"
-                   alt="Как совершить убийство — постер" class="card__img" loading="lazy"
+                   alt="How to Commit Murder — poster" class="card__img" loading="lazy"
                    onerror="this.style.opacity='0'">
               <span class="card__age">18+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Как совершить убийство</div>
-              <div class="card__meta">Комедия · Триллер · 2026</div>
+              <div class="card__title">How to Commit Murder</div>
+              <div class="card__meta">Comedy · Thriller · 2026</div>
             </div>
           </a>
 
-          <a href="film.html" class="card" role="listitem" aria-label="Мортал Комбат 2 — экшн, 18+">
+          <a href="film.html" class="card" role="listitem" aria-label="Mortal Kombat 2 — action, 18+">
             <div class="card__poster p-bio">
               <img src="https://image.tmdb.org/t/p/w500/5wqoFGTRB2iUnAElxjolw1pP9XJ.jpg"
-                   alt="Мортал Комбат 2 — постер" class="card__img" loading="lazy"
+                   alt="Mortal Kombat 2 — poster" class="card__img" loading="lazy"
                    onerror="this.style.opacity='0'">
               <span class="card__age">18+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Мортал Комбат 2</div>
-              <div class="card__meta">Экшн · 2026</div>
+              <div class="card__title">Mortal Kombat 2</div>
+              <div class="card__meta">Action · 2026</div>
             </div>
           </a>
 
-          <a href="film.html" class="card" role="listitem" aria-label="Я ругаюсь — драма, 18+">
+          <a href="film.html" class="card" role="listitem" aria-label="I Swear — drama, 18+">
             <div class="card__poster p-dra">
               <img src="https://image.tmdb.org/t/p/w500/5wzzexW1ol420BGAtmAmteKnHjG.jpg"
-                   alt="Я ругаюсь — постер" class="card__img" loading="lazy"
+                   alt="I Swear — poster" class="card__img" loading="lazy"
                    onerror="this.style.opacity='0'">
               <span class="card__age">18+</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-buy">Купить билет</span></div>
+              <div class="card__hover"><span class="card__cta">Buy Ticket</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Я ругаюсь</div>
-              <div class="card__meta">Драма · 2026</div>
+              <div class="card__title">I Swear</div>
+              <div class="card__meta">Drama · 2026</div>
             </div>
           </a>
 
@@ -869,36 +856,36 @@ button { font-family: inherit; }
       </div>
     </div>
 
-    <!-- Фестивали и спецпоказы -->
+    <!-- Festivals & Special Screenings -->
     <div class="cat-section">
       <div class="cat-head">
-        <h2 class="cat-title" data-i18n="c-fest">Фестивали и спецпоказы</h2>
-        <a href="special.html" class="cat-all" data-i18n="c-all">Смотреть все</a>
+        <h2 class="cat-title">Festivals &amp; Special Screenings</h2>
+        <a href="special.html" class="cat-all">See all</a>
       </div>
       <div class="cat-row-wrap">
-        <div class="cat-row cat-row--fest cat-row--2" role="list" aria-label="Фестивали и спецпоказы">
+        <div class="cat-row cat-row--fest cat-row--2" role="list" aria-label="Festivals & Special Screenings">
 
-          <a href="special.html" class="card card--fest" role="listitem" aria-label="Ретроспектива Тарковского, 5–19 июля">
+          <a href="special.html" class="card card--fest" role="listitem" aria-label="Tarkovsky Retrospective, July 5–19">
             <div class="card__poster">
-              <img src="tarkovsky.jpg" alt="Ретроспектива Тарковского — постер" class="card__img">
-              <span class="fest-badge">Ретроспектива</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-det">Подробнее</span></div>
+              <img src="tarkovsky.jpg" alt="Tarkovsky Retrospective — poster" class="card__img">
+              <span class="fest-badge">Retrospective</span>
+              <div class="card__hover"><span class="card__cta">Details</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Ретроспектива Тарковского</div>
-              <div class="card__meta">5–19 июля · Зеркало · Сталкер · Солярис</div>
+              <div class="card__title">Tarkovsky Retrospective</div>
+              <div class="card__meta">Jul 5–19 · Mirror · Stalker · Solaris</div>
             </div>
           </a>
 
-          <a href="special.html" class="card card--fest" role="listitem" aria-label="Кино в парке, 12 июля">
+          <a href="special.html" class="card card--fest" role="listitem" aria-label="Cinema in the Park, July 12">
             <div class="card__poster">
-              <img src="Awareness banner.png" alt="Кино в парке — постер" class="card__img">
-              <span class="fest-badge" style="border-color:var(--cyan);color:var(--cyan)">★ Кино в парке</span>
-              <div class="card__hover"><span class="card__cta" data-i18n="c-det">Подробнее</span></div>
+              <img src="Awareness banner.png" alt="Cinema in the Park — poster" class="card__img">
+              <span class="fest-badge" style="border-color:var(--cyan);color:var(--cyan)">★ Cinema in the Park</span>
+              <div class="card__hover"><span class="card__cta">Details</span></div>
             </div>
             <div class="card__info">
-              <div class="card__title">Кино в парке</div>
-              <div class="card__meta">12 июля · Парк Горького · Бесплатно</div>
+              <div class="card__title">Cinema in the Park</div>
+              <div class="card__meta">Jul 12 · Gorky Park · Free</div>
             </div>
           </a>
 
@@ -910,42 +897,42 @@ button { font-family: inherit; }
 </main>
 
 <!-- FOOTER -->
-<footer class="footer" aria-label="Подвал сайта">
+<footer class="footer" aria-label="Site footer">
   <div class="footer__top">
     <div>
       <a href="index.html" class="footer__logo">Cinerix<em>.</em></a>
-      <p class="footer__tagline">Кино, которое стоит увидеть.</p>
+      <p class="footer__tagline">Movies worth watching.</p>
     </div>
     <div>
-      <div class="footer__col-title" data-i18n="f-films">Фильмы</div>
+      <div class="footer__col-title">Films</div>
       <ul class="footer__links">
-        <li><a href="films.html"   class="footer__link" data-i18n="f-now">Сейчас в кино</a></li>
-        <li><a href="soon.html"    class="footer__link" data-i18n="f-soon">Скоро</a></li>
-        <li><a href="special.html" class="footer__link" data-i18n="f-spec">Спецпоказы</a></li>
-        <li><a href="archive.html" class="footer__link" data-i18n="f-arch">Архив</a></li>
+        <li><a href="films.html"   class="footer__link">Now Showing</a></li>
+        <li><a href="soon.html"    class="footer__link">Coming Soon</a></li>
+        <li><a href="special.html" class="footer__link">Special Screenings</a></li>
+        <li><a href="archive.html" class="footer__link">Archive</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer__col-title" data-i18n="f-info">Информация</div>
+      <div class="footer__col-title">Information</div>
       <ul class="footer__links">
-        <li><a href="about.html" class="footer__link" data-i18n="f-about">О кинотеатре</a></li>
-        <li><a href="#"          class="footer__link" data-i18n="f-ads">Реклама</a></li>
-        <li><a href="#"          class="footer__link" data-i18n="f-rent">Аренда залов</a></li>
-        <li><a href="#"          class="footer__link" data-i18n="f-press">Пресса</a></li>
+        <li><a href="about.html" class="footer__link">About</a></li>
+        <li><a href="#"          class="footer__link">Advertising</a></li>
+        <li><a href="#"          class="footer__link">Room Rental</a></li>
+        <li><a href="#"          class="footer__link">Press</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer__col-title" data-i18n="f-cont">Контакты</div>
+      <div class="footer__col-title">Contacts</div>
       <ul class="footer__links">
-        <li><a href="#"                      class="footer__link">ул. Новый Арбат, 15</a></li>
+        <li><a href="#"                      class="footer__link">15 Novy Arbat St.</a></li>
         <li><a href="tel:+74950000000"       class="footer__link">+7 (495) 000-00-00</a></li>
         <li><a href="mailto:info@cinerix.ru" class="footer__link">info@cinerix.ru</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer__col-title" data-i18n="f-soc">Соцсети</div>
+      <div class="footer__col-title">Social</div>
       <ul class="footer__links">
-        <li><a href="#" class="footer__link">ВКонтакте</a></li>
+        <li><a href="#" class="footer__link">VKontakte</a></li>
         <li><a href="#" class="footer__link">Telegram</a></li>
         <li><a href="#" class="footer__link">YouTube</a></li>
       </ul>
@@ -954,75 +941,13 @@ button { font-family: inherit; }
   <div class="footer__bottom">
     <p class="footer__copy">© 2026 Cinerix</p>
     <div class="footer__legal">
-      <a href="#" data-i18n="f-priv">Политика конфиденциальности</a>
-      <a href="#" data-i18n="f-terms">Пользовательское соглашение</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
     </div>
   </div>
 </footer>
 
 <script>
-// ============================================================
-// TRANSLATIONS
-// ============================================================
-const T = {
-  ru: {
-    'skip':'Перейти к содержимому','b-text':'Кино в парке — 12 июля, Парк Горького',
-    'b-link':'Подробнее →','n-films':'Фильмы','n-special':'Спецпоказы',
-    'n-soon':'Скоро в кино','n-about':'О кинотеатре','n-cta':'Купить билет',
-    'h-more':'Подробнее','h-buy':'Купить билет','s3-cta':'Узнать больше',
-    'fd-today':'Сегодня','fd-tmrw':'Завтра','fg-all':'Все жанры','fb-find':'Найти',
-    'c-new':'Новинки','c-smart':'Уже в кино','c-crit':'Выбор критиков',
-    'c-fest':'Фестивали и спецпоказы','c-all':'Смотреть все',
-    'c-buy':'Купить билет','c-det':'Подробнее',
-    'f-films':'Фильмы','f-now':'Сейчас в кино','f-soon':'Скоро',
-    'f-spec':'Спецпоказы','f-arch':'Архив','f-info':'Информация',
-    'f-about':'О кинотеатре','f-ads':'Реклама','f-rent':'Аренда залов',
-    'f-press':'Пресса','f-cont':'Контакты','f-soc':'Соцсети',
-    'f-priv':'Политика конфиденциальности','f-terms':'Пользовательское соглашение',
-    'fi-search':'Название фильма или жанр…','fi-nav':'Название фильма…',
-    'g-drama':'Драма','g-comedy':'Комедия','g-thriller':'Триллер','g-horror':'Ужасы',
-    'g-sci':'Фантастика','g-bio':'Биография','g-doc':'Документальное','g-anim':'Анимация','g-family':'Семейное'
-  },
-  en: {
-    'skip':'Skip to content','b-text':'Cinema in the Park — July 12, Gorky Park',
-    'b-link':'Learn more →','n-films':'Films','n-special':'Special Screenings',
-    'n-soon':'Coming Soon','n-about':'About','n-cta':'Buy Ticket',
-    'h-more':'Details','h-buy':'Buy Ticket','s3-cta':'Learn More',
-    'fd-today':'Today','fd-tmrw':'Tomorrow','fg-all':'All genres','fb-find':'Search',
-    'c-new':'Now Showing','c-smart':'In Cinemas','c-crit':'Critics\' Choice',
-    'c-fest':'Festivals & Special Screenings','c-all':'See all',
-    'c-buy':'Buy Ticket','c-det':'Details',
-    'f-films':'Films','f-now':'Now Showing','f-soon':'Coming Soon',
-    'f-spec':'Special Screenings','f-arch':'Archive','f-info':'Information',
-    'f-about':'About','f-ads':'Advertising','f-rent':'Room Rental',
-    'f-press':'Press','f-cont':'Contacts','f-soc':'Social',
-    'f-priv':'Privacy Policy','f-terms':'Terms of Use',
-    'fi-search':'Film title or genre…','fi-nav':'Film title…',
-    'g-drama':'Drama','g-comedy':'Comedy','g-thriller':'Thriller','g-horror':'Horror',
-    'g-sci':'Sci-Fi','g-bio':'Biography','g-doc':'Documentary','g-anim':'Animation','g-family':'Family'
-  }
-};
-
-let currentLang = 'ru';
-
-function applyLang(lang) {
-  currentLang = lang;
-  document.documentElement.lang = lang;
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const v = T[lang][el.dataset.i18n];
-    if (v !== undefined) el.textContent = v;
-  });
-  document.getElementById('filterSearch').placeholder = T[lang]['fi-search'];
-  document.getElementById('searchInput').placeholder  = T[lang]['fi-nav'];
-  if (window.calendarRender) window.calendarRender();
-  document.getElementById('lRu').classList.toggle('active', lang==='ru');
-  document.getElementById('lEn').classList.toggle('active', lang==='en');
-  document.getElementById('lRu').setAttribute('aria-pressed', lang==='ru');
-  document.getElementById('lEn').setAttribute('aria-pressed', lang==='en');
-}
-document.getElementById('lRu').addEventListener('click', () => applyLang('ru'));
-document.getElementById('lEn').addEventListener('click', () => applyLang('en'));
-
 // ============================================================
 // EVENT BANNER
 // ============================================================
@@ -1094,7 +1019,6 @@ document.addEventListener('click', e => {
   );
 
   function render() {
-    const locale = currentLang === 'ru' ? 'ru-RU' : 'en-US';
     strip.innerHTML = '';
     const end = Math.min(startIdx + WINDOW, TOTAL);
     for (let i = startIdx; i < end; i++) {
@@ -1104,13 +1028,13 @@ document.addEventListener('click', e => {
         (i === selectedIdx ? ' on' : '') +
         (i === 0 ? ' cal-day--today' : '');
       btn.setAttribute('aria-pressed', i === selectedIdx ? 'true' : 'false');
-      btn.setAttribute('aria-label', d.toLocaleDateString(locale, { day:'numeric', month:'long', weekday:'long' }));
+      btn.setAttribute('aria-label', d.toLocaleDateString('en-US', { day:'numeric', month:'long', weekday:'long' }));
 
-      const rawLabel = i === 0 ? T[currentLang]['fd-today'] :
-                       i === 1 ? T[currentLang]['fd-tmrw']  :
-                       d.toLocaleDateString(locale, { weekday: 'short' }).replace('.', '');
+      const rawLabel = i === 0 ? 'Today' :
+                       i === 1 ? 'Tomorrow'  :
+                       d.toLocaleDateString('en-US', { weekday: 'short' }).replace('.', '');
       const label = rawLabel.charAt(0).toUpperCase() + rawLabel.slice(1);
-      const month = d.toLocaleDateString(locale, { month: 'short' }).replace('.', '');
+      const month = d.toLocaleDateString('en-US', { month: 'short' }).replace('.', '');
       btn.innerHTML =
         `<span class="cal-day__label">${label}</span>` +
         `<span class="cal-day__num">${d.getDate()}</span>` +
@@ -1189,20 +1113,23 @@ document.addEventListener('click', e => {
     else if (cur <= 0) snap(N);     // past clone-last  → jump to real slide N
   });
 
-  function startAuto() { timer = setInterval(() => goTo(cur + 1), 5000); }
-  function stopAuto()  { clearInterval(timer); }
+  let userStopped = false;
 
-  prevBtn.addEventListener('click', () => { stopAuto(); goTo(cur - 1); startAuto(); });
-  nextBtn.addEventListener('click', () => { stopAuto(); goTo(cur + 1); startAuto(); });
-  dots.forEach((d, i) => d.addEventListener('click', () => { stopAuto(); goTo(i + 1); startAuto(); }));
+  function startAuto() { timer = setInterval(() => goTo(cur + 1), 7000); }
+  function stopAuto()  { clearInterval(timer); }
+  function stopAutoForGood() { userStopped = true; stopAuto(); }
+
+  prevBtn.addEventListener('click', () => { stopAutoForGood(); goTo(cur - 1); });
+  nextBtn.addEventListener('click', () => { stopAutoForGood(); goTo(cur + 1); });
+  dots.forEach((d, i) => d.addEventListener('click', () => { stopAutoForGood(); goTo(i + 1); }));
 
   heroEl.addEventListener('mouseenter', stopAuto);
-  heroEl.addEventListener('mouseleave', startAuto);
+  heroEl.addEventListener('mouseleave', () => { if (!userStopped) startAuto(); });
   heroEl.addEventListener('focusin',    stopAuto);
-  heroEl.addEventListener('focusout',   startAuto);
+  heroEl.addEventListener('focusout',   () => { if (!userStopped) startAuto(); });
   heroEl.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft')  { stopAuto(); goTo(cur - 1); startAuto(); }
-    if (e.key === 'ArrowRight') { stopAuto(); goTo(cur + 1); startAuto(); }
+    if (e.key === 'ArrowLeft')  { stopAutoForGood(); goTo(cur - 1); }
+    if (e.key === 'ArrowRight') { stopAutoForGood(); goTo(cur + 1); }
   });
 
   snap(1);        // position at slide 1, no animation
@@ -1220,17 +1147,22 @@ document.querySelectorAll('.cat-all').forEach(a => {
 });
 
 // ============================================================
-// DISABLE FILM CARDS EXCEPT DEVIL WEARS PRADA 2
+// DISABLE FILM CARDS EXCEPT THE DEVIL WEARS PRADA 2
 // ============================================================
-document.querySelectorAll('.card').forEach(card => {
-  if (!card.getAttribute('aria-label').startsWith('Дьявол носит Prada 2')) {
+document.querySelectorAll('.card:not(.card--fest)').forEach(card => {
+  if (!card.getAttribute('aria-label').startsWith('The Devil Wears Prada 2')) {
     card.setAttribute('aria-disabled', 'true');
     card.addEventListener('click', e => { e.preventDefault(); card.blur(); });
+    const cta = card.querySelector('.card__cta');
+    if (cta) {
+      cta.textContent = 'Sold Out';
+      cta.classList.add('card__cta--soldout');
+    }
   }
 });
 
 // ============================================================
-// DISABLE HERO BUTTONS EXCEPT DEVIL WEARS PRADA 2 SLIDE
+// DISABLE HERO BUTTONS EXCEPT THE DEVIL WEARS PRADA 2 SLIDE
 // ============================================================
 document.querySelectorAll('.hero__slide:not(.slide-2) .hero__actions a').forEach(btn => {
   btn.setAttribute('aria-disabled', 'true');
